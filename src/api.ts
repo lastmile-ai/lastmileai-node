@@ -20,7 +20,7 @@ export class LastMileAIApi {
      * @summary Returns status of API layer
      * @memberof LastMileAIApi
      */
-    public async apiHealth() {
+    public async apiHealth(): Promise<{ status: string }> {
         const res = await axios.get('https://lastmileai.dev/api/health');
         return res.data.json();
     }
