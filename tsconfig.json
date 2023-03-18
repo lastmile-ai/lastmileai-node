@@ -11,8 +11,9 @@
   },
   "include": ["src"],
   "exclude": [
-    "node_modules",
     "dist",
+    "docs",
+    "node_modules",
   ],
   "lib": ["es2015"]
 }
