@@ -7,10 +7,12 @@
     "sourceMap": true,
     "declaration": true,
     "strict": true,
-    "outDir": "dist",
-    "resolveJsonModule": true
+    "rootDir": ".",
+    "outDir": ".", 
+    "resolveJsonModule": true,
+    "composite": true
   },
-  "include": ["src"],
+  "files": ["package.json"],
   "exclude": [
     "dist",
     "docs",
