@@ -595,7 +595,7 @@ export class LastMileAIApi {
      */
     public async apiHealth(): Promise<{ status: string }> {
         const res = await axios.get('health', this.configuration.defaultAxiosConfig);
-        return res.data.json();
+        return res.data;
     }
 
     /**
@@ -609,7 +609,7 @@ export class LastMileAIApi {
      */
     public async createEmbeddingCollection(data: EmbeddingCollectionCreateData): Promise<CreateEmbeddingCollectionResponse> {
         const res = await axios.post('embeddings/create', { ...this.configuration.defaultAxiosConfig, data });
-        return res.data.json();
+        return res.data;
     }
 
     /**
@@ -619,7 +619,7 @@ export class LastMileAIApi {
      */
     public async deleteEmbeddingCollection(id: string): Promise<{ status: string }> {
         const res = await axios.delete('embeddings/delete', { ...this.configuration.defaultAxiosConfig, data: { id } });
-        return res.data.json();
+        return res.data;
     }
 
     /**
@@ -636,7 +636,7 @@ export class LastMileAIApi {
                 search: queryData?.name,
             }
         });
-        return res.data.json();
+        return res.data;
     }
 
     /**
@@ -646,7 +646,7 @@ export class LastMileAIApi {
     */
     public async readEmbeddingCollection(id: string): Promise<ReadEmbeddingCollectionResponse> {
         const res = await axios.get('embeddings/read', { ...this.configuration.defaultAxiosConfig, params: { id } });
-        return res.data.json();
+        return res.data;
     }
 
     /**
@@ -657,6 +657,6 @@ export class LastMileAIApi {
     */
     public async updateEmbeddingCollection(id: string, data: EmbeddingCollectionUpdateData): Promise<UpdateEmbeddingCollectionResponse> {
         const res = await axios.put('embeddings/update', { ...this.configuration.defaultAxiosConfig, data });
-        return res.data.json();
+        return res.data;
     }
 };

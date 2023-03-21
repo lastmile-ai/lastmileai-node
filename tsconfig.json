@@ -1,22 +1,18 @@
 {
-  "compilerOptions": {
-    "module": "commonjs",
-    "esModuleInterop": true,
-    "target": "es6",
-    "moduleResolution": "node",
-    "sourceMap": true,
-    "declaration": true,
-    "strict": true,
-    "rootDir": ".",
-    "outDir": ".", 
-    "resolveJsonModule": true,
-    "composite": true
-  },
-  "files": ["package.json"],
-  "exclude": [
-    "dist",
-    "docs",
-    "node_modules",
-  ],
-  "lib": ["es2015"]
+    "compilerOptions": {
+        "declaration": true,
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "noImplicitAny": true,
+        "outDir": "dist",
+        "resolveJsonModule": true,
+        "rootDir": ".",
+        "strict": true,
+        "target": "es6",
+    },
+    "exclude": [
+        "dist",
+        "docs",
+        "node_modules",
+    ],
 }

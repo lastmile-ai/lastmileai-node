@@ -1,5 +1,5 @@
 import { AxiosRequestConfig } from "axios";
-import packageJson from "../package.json";
+import packageJson = require("./package.json");
 
 export interface ConfigurationParameters {
     apiKey: string;
