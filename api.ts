@@ -20,16 +20,16 @@ export interface Upload {
     'id': string;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof Upload
      */
-    'createdAt': Date;
+    'createdAt': string;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof Upload
      */
-    'updatedAt': Date;
+    'updatedAt': string;
     /**
      * 
      * @type {string}
@@ -112,16 +112,16 @@ export interface EmbeddingCollection {
     'id': string;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof EmbeddingCollection
      */
-    'createdAt': Date;
+    'createdAt': string;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof EmbeddingCollection
      */
-    'updatedAt': Date;
+    'updatedAt': string;
     /**
      * 
      * @type {JSONValue}
@@ -210,16 +210,16 @@ export interface EmbeddingData {
     'id': string;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof EmbeddingData
      */
-    'createdAt': Date;
+    'createdAt': string;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof EmbeddingData
      */
-    'updatedAt': Date;
+    'updatedAt': string;
     /**
      * 
      * @type {string}
@@ -257,7 +257,7 @@ export interface EmbeddingCollectionCreateData {
      * @type {Array<{id: string}>}
      * @memberof EmbeddingCollectionCreateData
      */
-    'uploads'?: string;
+    'uploads'?: Array<{ id: string }>;
 }
 
 /**
@@ -334,16 +334,16 @@ export interface Experiment {
     'id': string;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof Experiment
      */
-    'createdAt': Date;
+    'createdAt': string;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof Experiment
      */
-    'updatedAt': Date;
+    'updatedAt': string;
     /**
      * 
      * @type {string}
@@ -442,16 +442,16 @@ export interface Model {
     'id': string;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof Model
      */
-    'createdAt': Date;
+    'createdAt': string;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof Model
      */
-    'updatedAt': Date;
+    'updatedAt': string;
     /**
      * 
      * @type {string}
@@ -536,6 +536,19 @@ export interface Model {
  * TRIAL TYPES
  */
 
+export enum TrialType {
+    INFERENCE = 'INFERENCE',
+    FINE_TUNE = 'FINE_TUNE',
+}
+
+/**
+ * State of a trial -- once a trial is closed, its model is available for consumption
+ */
+export enum TrialState {
+    OPEN = 'OPEN',
+    CLOSED = 'CLOSED',
+}
+
 /**
  * 
  * @export
@@ -550,23 +563,309 @@ export interface Trial {
     'id': string;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof Trial
      */
-    'createdAt': Date;
+    'createdAt': string;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof Trial
      */
-    'updatedAt': Date;
+    'updatedAt': string;
     /**
      * 
      * @type {string}
      * @memberof Trial
      */
     'creatorId': string;
+    /**
+     * 
+     * @type {?string}
+     * @memberof Trial
+     */
+    'name': string | null;
+    /**
+     * 
+     * @type {TrialType}
+     * @memberof Trial
+     */
+    'type': TrialType;
+    /**
+     * 
+     * @type {TrialState}
+     * @memberof Trial
+     */
+    'state': TrialState;
+    /**
+     * 
+     * @type {string}
+     * @memberof Trial
+     */
+    'experimentId': string;
+    /**
+     * 
+     * @type {?string}
+     * @memberof Trial
+     */
+    'playgroundModelId': string | null;
+    /**
+     * 
+     * @type {?string}
+     * @memberof Trial
+     */
+    'modelId': string | null;
+    /**
+     * 
+     * @type {Array<Comment>}
+     * @memberof Trial
+     */
+    'comments': Array<Comment>;
+    /**
+     * 
+     * @type {JSONValue | null}
+     * @memberof Trial
+     */
+    'parameters': JSONValue | null;
+    /**
+     * 
+     * @type {Array<TrialStep>}
+     * @memberof Trial
+     */
+    'trialSteps': Array<TrialStep>;
+    /**
+     * 
+     * @type {?string}
+     * @memberof Trial
+     */
+    'rootStepId': string | null;
+    /**
+     * 
+     * @type {?string}
+     * @memberof Trial
+     */
+    'latestStepId': string | null;
+    /**
+     * 
+     * @type {JSONValue | null}
+     * @memberof Trial
+     */
+    'attributed': JSONValue | null;
+    /**
+     * 
+     * @type {?string}
+     * @memberof Trial
+     */
+    'organizationId': string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Trial
+     */
+    'active': boolean;
+    /**
+     * 
+     * @type {?string}
+     * @memberof Trial
+     */
+    'forkedFromTrialId': string | null;
+    /**
+     * 
+     * @type {?string}
+     * @memberof Trial
+     */
+    'forkedFromTrialStepId': string | null;
 }
+
+/**
+ * Modeling the DAG representing a trial run -- each 'step' is a node in the DAG & is either:
+ * - an input to a model,
+ * - an output from a model,
+ * - a user-defined type of a trial step,
+ * - some other future type of step in a trial run.
+ * Each step can contain metadata, such as:
+ * - model metrics (training loss, validation loss, token accuracy, etc.) that correspond to the model at that point-in-time
+ * - trial step metrics (token accuracy) that correspond to the trial step (metrics for the node itself).
+ * As a result, traversing this DAG can provide a time-travel view of model performance/metrics step-by-step, and can enable
+ * streaming results to long-running trials, and find the point of optimal performance within a single trial.
+ * Finally, since these 'steps' are flexible in their structure, they can represent anything users want them to
+ * @export
+ * @interface TrialStep
+ */
+export interface TrialStep {
+    /**
+     * 
+     * @type {string}
+     * @memberof TrialStep
+     */
+    'id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TrialStep
+     */
+    'createdAt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TrialStep
+     */
+    'updatedAt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TrialStep
+     */
+    'creatorId': string;
+    /**
+     * Type of step in the Trial execution DAG (e.g. 'input', 'output', etc.)
+     * @type {string}
+     * @memberof TrialStep
+     */
+    'type': string;
+    /**
+     * Data in the TrialStep (e.g. input prompt text, output image URL, etc.)
+     * @type {JSONValue}
+     * @memberof TrialStep
+     */
+    'data': JSONValue;
+    /**
+     * Metadata associated with this TrialStep (e.g. metrics for the model for this particular step)
+     * @type {JSONValue}
+     * @memberof TrialStep
+     */
+    'metadata': JSONValue;
+    /**
+     * Any uploads to storage that are referenced in the metrics data in some way
+     * @type {Array<Upload>}
+     * @memberof TrialStep
+     */
+    'uploads': Array<Upload>;
+    /**
+     * Parent step ID (always specified unless this is the first step)
+     * @type {?string}
+     * @memberof TrialStep
+     */
+    'previousStepId': string | null;
+    /**
+     * Children step IDs
+     * @type {Array<string>}
+     * @memberof TrialStep
+     */
+    'nextStepIds': Array<string>;
+    /**
+     *
+     * @type {Array<Trial>}
+     * @memberof TrialStep
+     */
+    'trials': Array<Trial>;
+    /**
+     * All human-in-the-loop feedback associated with this trial step
+     * @type {Array<TrialStepFeedback>}
+     * @memberof TrialStep
+     */
+    'trialStepFeedback': Array<TrialStepFeedback>;
+    /**
+     *
+     * @type {Array<Comment>}
+     * @memberof TrialStep
+     */
+    'comments': Array<Comment>;
+    /**
+     *
+     * @type {JSONValue | null}
+     * @memberof TrialStep
+     */
+    'attributes': JSONValue | null;
+}
+
+/**
+ * Represents a human-in-the-loop feedback for each trial step (e.g. upvoting an image created by the model)
+ * @export
+ * @interface TrialStepFeedback
+ */
+export interface TrialStepFeedback {
+    /**
+     * 
+     * @type {string}
+     * @memberof TrialStepFeedback
+     */
+    'id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TrialStepFeedback
+     */
+    'createdAt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TrialStepFeedback
+     */
+    'updatedAt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TrialStepFeedback
+     */
+    'trialId': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TrialStepFeedback
+     */
+    'trialStepId': string;
+    /**
+     * Feedback (e.g. upvote, downvote, etc.)
+     * @type {JSONValue}
+     * @memberof TrialStepFeedback
+     */
+    'feedback': JSONValue;
+    /**
+     * Person giving the feedback
+     * @type {?string}
+     * @memberof TrialStepFeedback
+     */
+    'userId': string | null;
+    /**
+     * 
+     * @type {JSONValue | null}
+     * @memberof TrialStepFeedback
+     */
+    'attributes': JSONValue | null;
+}
+
+/**
+ * 
+ * @export
+ * @interface TrialCreateData
+ */
+export interface TrialCreateData {
+    /**
+     * 
+     * @type {string}
+     * @memberof TrialCreateData
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TrialCreateData
+     */
+    'experimentId'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TrialCreateData
+     */
+    'modelId'?: string;
+}
+
+/**
+ * @type CreateTrialResponse
+ * @export
+ */
+export type CreateTrialResponse = Trial;
 
 /**
  * API Class
@@ -594,7 +893,12 @@ export class LastMileAIApi {
      * @summary Returns status of API layer
      */
     public async apiHealth(): Promise<{ status: string }> {
-        const res = await axios.get('health', this.configuration.defaultAxiosConfig);
+        // Only need the 'User-Agent' header from the default config
+        let headers;
+        if (this.configuration.defaultAxiosConfig.headers) {
+            headers = { 'User-Agent': this.configuration.defaultAxiosConfig.headers['User-Agent'] };
+        }
+        const res = await axios.get('health', { ...this.configuration.defaultAxiosConfig, headers });
         return res.data;
     }
 
@@ -657,6 +961,21 @@ export class LastMileAIApi {
     */
     public async updateEmbeddingCollection(id: string, data: EmbeddingCollectionUpdateData): Promise<UpdateEmbeddingCollectionResponse> {
         const res = await axios.put('embeddings/update', { ...this.configuration.defaultAxiosConfig, data });
+        return res.data;
+    }
+
+
+    /**
+     * TRIALS
+     */
+
+    /**
+     * 
+     * @summary Creates and returns a new Trial
+     * @param {TrialCreateData} data Data to set in the created Trial
+     */
+    public async createTrial(data: TrialCreateData): Promise<CreateTrialResponse> {
+        const res = await axios.post('trials/create', { ...this.configuration.defaultAxiosConfig, data });
         return res.data;
     }
 };
