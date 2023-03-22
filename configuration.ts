@@ -24,8 +24,9 @@ export class Configuration {
             baseURL: 'https://lastmileai.dev/api/',
             headers: {
                 'User-Agent': `LastMileAI/NodeJS/${packageJson.version}`,
-                'content-type': 'application/json',
-                'Authorization': `Bearer: ${this.apiKey}`,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${this.apiKey}`,
             }
         };
     }

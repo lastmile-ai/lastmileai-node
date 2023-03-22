@@ -953,7 +953,7 @@ export class LastMileAIApi {
     }
 
     /**
-     * GENERAL
+     * HELPERS
      */
 
     /**
@@ -980,7 +980,7 @@ export class LastMileAIApi {
      * @param {EmbeddingCollectionCreateData} data Data to set in the created EmbeddingCollection
      */
     public async createEmbeddingCollection(data: EmbeddingCollectionCreateData): Promise<CreateEmbeddingCollectionResponse> {
-        const res = await axios.post('embeddings/create', { ...this.configuration.defaultAxiosConfig, data });
+        const res = await axios.post('embeddings/create', data, this.configuration.defaultAxiosConfig);
         return res.data;
     }
 
@@ -1028,7 +1028,7 @@ export class LastMileAIApi {
     * @param {EmbeddingCollectionUpdateData} data Data to update for the EmbeddingCollection
     */
     public async updateEmbeddingCollection(id: string, data: EmbeddingCollectionUpdateData): Promise<UpdateEmbeddingCollectionResponse> {
-        const res = await axios.put('embeddings/update', { ...this.configuration.defaultAxiosConfig, data });
+        const res = await axios.put('embeddings/update', data, this.configuration.defaultAxiosConfig);
         return res.data;
     }
 
@@ -1043,7 +1043,7 @@ export class LastMileAIApi {
      * @param {TrialCreateData} data Data to set in the created Trial
      */
     public async createTrial(data: TrialCreateData): Promise<CreateTrialResponse> {
-        const res = await axios.post('trials/create', { ...this.configuration.defaultAxiosConfig, data });
+        const res = await axios.post('trials/create', data, this.configuration.defaultAxiosConfig);
         return res.data;
     }
 };
