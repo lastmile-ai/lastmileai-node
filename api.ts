@@ -9,6 +9,74 @@ import { Configuration } from "./configuration";
 /**
  * 
  * @export
+ * @interface Comment
+ */
+export interface Comment {
+    /**
+     * 
+     * @type {string}
+     * @memberof Comment
+     */
+    'id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Comment
+     */
+    'createdAt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Comment
+     */
+    'updatedAt': string;
+    /**
+     * 
+     * @type {?string}
+     * @memberof Comment
+     */
+    'parentId': string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Comment
+     */
+    'userId': string;
+    /**
+     * 
+     * @type {?string}
+     * @memberof Comment
+     */
+    'trialId': string | null;
+    /**
+     * 
+     * @type {?string}
+     * @memberof Comment
+     */
+    'reviewId': string | null;
+    /**
+     * 
+     * @type {?string}
+     * @memberof Comment
+     */
+    'trialStepId': string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Comment
+     */
+    'content': string;
+    /**
+     * 
+     * @type {JSONValue}
+     * @memberof Comment
+     */
+    'attributes': JSONValue;
+}
+
+/**
+ * 
+ * @export
  * @interface Upload
  */
 export interface Upload {
