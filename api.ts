@@ -331,25 +331,25 @@ export interface EmbeddingCollectionCreateData {
 /**
  * 
  * @export
- * @interface EmbeddingCollectionsListQueryData
+ * @interface EmbeddingCollectionListQueryData
  */
-export interface EmbeddingCollectionsListQueryData {
+export interface EmbeddingCollectionListQueryData {
     /**
      * 
      * @type {string}
-     * @memberof EmbeddingCollectionsListQueryData
+     * @memberof EmbeddingCollectionListQueryData
      */
     'cursor'?: string;
     /**
      * 
      * @type {number}
-     * @memberof EmbeddingCollectionsListQueryData
+     * @memberof EmbeddingCollectionListQueryData
      */
     'pageSize'?: number;
     /**
      * 
      * @type {string}
-     * @memberof EmbeddingCollectionsListQueryData
+     * @memberof EmbeddingCollectionListQueryData
      */
     'name'?: string;
 }
@@ -491,6 +491,82 @@ export interface Experiment {
      */
     'attributes': JSONValue | null;
 }
+
+/**
+ * 
+ * @export
+ * @interface ExperimentCreateData
+ */
+export interface ExperimentCreateData {
+    /**
+     * 
+     * @type {string}
+     * @memberof ExperimentCreateData
+     */
+    'name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExperimentCreateData
+     */
+    'description'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExperimentCreateData
+     */
+    'modelId'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExperimentCreateData
+     */
+    'workspaceId'?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface ExperimentListQueryData
+ */
+export interface ExperimentListQueryData {
+    /**
+     * 
+     * @type {string}
+     * @memberof ExperimentListQueryData
+     */
+    'cursor'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ExperimentListQueryData
+     */
+    'pageSize'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExperimentListQueryData
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExperimentListQueryData
+     */
+    'workspaceId'?: string;
+}
+
+/**
+ * @type CreateExperimentResponse
+ * @export
+ */
+export type CreateExperimentResponse = Experiment;
+
+/**
+ * @type ListExperimentResponse
+ * @export
+ */
+export type ListExperimentResponse = Array<Experiment>;
 
 /**
  * MODEL TYPES
@@ -997,9 +1073,9 @@ export class LastMileAIApi {
     /**
     * 
     * @summary Returns a list of EmbeddingCollections. Supports pagination and filtering by name
-    * @param {EmbeddingCollectionsListQueryData} [queryData] The cursor id of the last item provided by listEmbeddingCollections API
+    * @param {EmbeddingCollectionListQueryData} [queryData] The cursor id of the last item provided by listEmbeddingCollections API
     */
-    public async listEmbeddingCollections(queryData?: EmbeddingCollectionsListQueryData): Promise<ListEmbeddingCollectionsResponse> {
+    public async listEmbeddingCollections(queryData?: EmbeddingCollectionListQueryData): Promise<ListEmbeddingCollectionsResponse> {
         const res = await axios.get('embeddings/list', {
             ...this.configuration.defaultAxiosConfig,
             params: {
@@ -1032,6 +1108,46 @@ export class LastMileAIApi {
         return res.data;
     }
 
+    /**
+     * EXPERIMENTS
+     */
+
+    /**
+     * 
+     * @summary Creates and returns a new Experiment
+     * @param {EmbeddingCollectionCreateData} data Data to set in the created Experiment
+     */
+    public async createExperiment(data: ExperimentCreateData): Promise<CreateExperimentResponse> {
+        const res = await axios.post('experiments/create', data, this.configuration.defaultAxiosConfig);
+        return res.data;
+    }
+
+    /**
+     * 
+     * @summary Deletes a specified Experiment and returns its ID
+     * @param {string} id The ID of the Experiment to delete
+     */
+    public async deleteExperiment(id: string): Promise<{ status: string }> {
+        const res = await axios.delete('experiments/delete', { ...this.configuration.defaultAxiosConfig, data: { id } });
+        return res.data;
+    }
+
+    /**
+    * 
+    * @summary Returns a list of Experiments. Supports pagination and filtering by name
+    * @param {ExperimentListQueryData} [queryData] The cursor id of the last item provided by listExperiments API
+    */
+    public async listExperiments(queryData?: ExperimentListQueryData): Promise<ListExperimentResponse> {
+        const res = await axios.get('experiments/list', {
+            ...this.configuration.defaultAxiosConfig,
+            params: {
+                cursor: queryData?.cursor,
+                pageSize: queryData?.pageSize?.toString(),
+                search: queryData?.name,
+            }
+        });
+        return res.data;
+    }
 
     /**
      * TRIALS
