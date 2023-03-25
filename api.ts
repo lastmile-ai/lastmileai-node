@@ -1,4 +1,10 @@
 import axios from "axios";
+import {
+    CreateChatCompletionRequest as OpenAICreateChatCompletionRequest,
+    CreateChatCompletionResponse as OpenAICreateChatCompletionResponse,
+    CreateCompletionRequest as OpenAICreateCompletionRequest,
+    CreateCompletionResponse as OpenAICreateCompletionResponse,
+} from "openai";
 import { JSONValue } from "./common";
 import { Configuration } from "./configuration";
 
@@ -557,6 +563,12 @@ export interface ExperimentListQueryData {
 }
 
 /**
+ * @type ExperimentUpdateData
+ * @export
+ */
+export type ExperimentUpdateData = ExperimentCreateData;
+
+/**
  * @type CreateExperimentResponse
  * @export
  */
@@ -567,6 +579,18 @@ export type CreateExperimentResponse = Experiment;
  * @export
  */
 export type ListExperimentResponse = Array<Experiment>;
+
+/**
+ * @type ReadExperimentResponse
+ * @export
+ */
+export type ReadExperimentResponse = Experiment;
+
+/**
+ * @type UpdateExperimentResponse
+ * @export
+ */
+export type UpdateExperimentResponse = Experiment;
 
 /**
  * MODEL TYPES
@@ -1104,7 +1128,7 @@ export class LastMileAIApi {
     * @param {EmbeddingCollectionUpdateData} data Data to update for the EmbeddingCollection
     */
     public async updateEmbeddingCollection(id: string, data: EmbeddingCollectionUpdateData): Promise<UpdateEmbeddingCollectionResponse> {
-        const res = await axios.put('embeddings/update', data, this.configuration.defaultAxiosConfig);
+        const res = await axios.put('embeddings/update', { ...data, id }, this.configuration.defaultAxiosConfig);
         return res.data;
     }
 
@@ -1144,8 +1168,54 @@ export class LastMileAIApi {
                 cursor: queryData?.cursor,
                 pageSize: queryData?.pageSize?.toString(),
                 search: queryData?.name,
+                workspaceId: queryData?.workspaceId,
             }
         });
+        return res.data;
+    }
+
+    /**
+    * 
+    * @summary Reads an Experiment
+    * @param {string} id The id of the Experiment to read
+    */
+    public async readExperiment(id: string): Promise<ReadExperimentResponse> {
+        const res = await axios.get('emperiments/read', { ...this.configuration.defaultAxiosConfig, params: { id } });
+        return res.data;
+    }
+
+    /**
+    * 
+    * @summary Update the data associated with an Experiment
+    * @param {string} id The id of the Experiment to update
+    * @param {ExperimentUpdateData} data Data to update for the Experiment
+    */
+    public async updateExperiment(id: string, data: ExperimentUpdateData): Promise<UpdateExperimentResponse> {
+        const res = await axios.put('experiments/update', { ...data, id }, this.configuration.defaultAxiosConfig);
+        return res.data;
+    }
+
+    /**
+     * INFERENCE
+     */
+
+    /**
+    * 
+    * @summary Provides text chat completion using OpenAI models
+    * @param {OpenAICreateChatCompletionRequest} data OpenAI CreateChatCompletionRequest
+    */
+    public async createOpenAIChatCompletion(data: OpenAICreateChatCompletionRequest): Promise<OpenAICreateChatCompletionResponse> {
+        const res = await axios.put('inference/openai/chatgpt/completion', data, this.configuration.defaultAxiosConfig);
+        return res.data;
+    }
+
+    /**
+    * 
+    * @summary Provides text completion using OpenAI models
+    * @param {OpenAICreateCompletionRequest} data OpenAI CreateCompletionRequest
+    */
+    public async createOpenAICompletion(data: OpenAICreateCompletionRequest): Promise<OpenAICreateCompletionResponse> {
+        const res = await axios.put('inference/openai/completion', data, this.configuration.defaultAxiosConfig);
         return res.data;
     }
 
