@@ -15,6 +15,172 @@ import { Configuration } from "./configuration";
 /**
  *
  * @export
+ * @interface Account
+ */
+export interface Account {
+  /**
+   *
+   * @type {string}
+   * @memberof Account
+   */
+  id: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Account
+   */
+  createdAt: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Account
+   */
+  updatedAt: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Account
+   */
+  userId: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Account
+   */
+  type: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Account
+   */
+  provider: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Account
+   */
+  providerAccountId: string;
+  /**
+   *
+   * @type {?string}
+   * @memberof Account
+   */
+  refresh_token: string | null;
+  /**
+   *
+   * @type {?number}
+   * @memberof Account
+   */
+  refresh_token_expires_in: number | null;
+  /**
+   *
+   * @type {?string}
+   * @memberof Account
+   */
+  access_token: string | null;
+  /**
+   *
+   * @type {?number}
+   * @memberof Account
+   */
+  expires_at: number | null;
+  /**
+   *
+   * @type {?string}
+   * @memberof Account
+   */
+  token_type: string | null;
+  /**
+   *
+   * @type {?string}
+   * @memberof Account
+   */
+  scope: string | null;
+  /**
+   *
+   * @type {?string}
+   * @memberof Account
+   */
+  id_token: string | null;
+  /**
+   *
+   * @type {?string}
+   * @memberof Account
+   */
+  session_state: string | null;
+  /**
+   *
+   * @type {?string}
+   * @memberof Account
+   */
+  oauth_token_secret: string | null;
+  /**
+   *
+   * @type {?string}
+   * @memberof Account
+   */
+  oauth_token: string | null;
+}
+
+/**
+ *
+ * @export
+ * @interface ApiToken
+ */
+export interface ApiToken {
+  /**
+   *
+   * @type {string}
+   * @memberof ApiToken
+   */
+  id: string;
+  /**
+   *
+   * @type {string}
+   * @memberof ApiToken
+   */
+  createdAt: string;
+  /**
+   *
+   * @type {string}
+   * @memberof ApiToken
+   */
+  updatedAt: string;
+  /**
+   *
+   * @type {string}
+   * @memberof ApiToken
+   */
+  name: string;
+  /**
+   *
+   * @type {string}
+   * @memberof ApiToken
+   */
+  token: string;
+  /**
+   *
+   * @type {?string}
+   * @memberof ApiToken
+   */
+  lastUsed: string | null;
+  /**
+   *
+   * @type {boolean}
+   * @memberof ApiToken
+   */
+  invalidated: boolean;
+  /**
+   *
+   * @type {string}
+   * @memberof ApiToken
+   */
+  userId: string;
+}
+
+/**
+ *
+ * @export
  * @interface Comment
  */
 export interface Comment {
@@ -112,8 +278,426 @@ export interface CommonListQueryData {
  */
 export type CommonListResponseData = {
   hasMore: boolean;
-  cursose?: string;
+  cursor?: string;
 };
+
+/**
+ *
+ * @export
+ * @interface Feedback
+ */
+export interface Feedback {
+  /**
+   *
+   * @type {string}
+   * @memberof Feedback
+   */
+  id: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Feedback
+   */
+  createdAt: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Feedback
+   */
+  updatedAt: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Feedback
+   */
+  userId: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Feedback
+   */
+  feedback: string;
+  /**
+   *
+   * @type {?string}
+   * @memberof Feedback
+   */
+  page: string | null;
+  /**
+   *
+   * @type {?JSONValue}
+   * @memberof Feedback
+   */
+  attributes: JSONValue | null;
+}
+
+/**
+ *
+ * @export
+ * @interface InvitedMember
+ */
+export interface InvitedMember {
+  /**
+   *
+   * @type {string}
+   * @memberof InvitedMember
+   */
+  createdAt: string;
+  /**
+   *
+   * @type {string}
+   * @memberof InvitedMember
+   */
+  updatedAt: string;
+  /**
+   *
+   * @type {string}
+   * @memberof InvitedMember
+   */
+  organizationId: string;
+  /**
+   *
+   * @type {string}
+   * @memberof InvitedMember
+   */
+  email: string;
+  /**
+   *
+   * @type {?string}
+   * @memberof InvitedMember
+   */
+  userId: string | null;
+  /**
+   *
+   * @type {boolean}
+   * @memberof InvitedMember
+   */
+  acceptedInvite: boolean;
+}
+
+/**
+ *
+ * @export
+ * @interface Profile
+ */
+export interface Profile {
+  /**
+   *
+   * @type {string}
+   * @memberof Profile
+   */
+  id: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Profile
+   */
+  createdAt: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Profile
+   */
+  updatedAt: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Profile
+   */
+  name: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Profile
+   */
+  bio: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Profile
+   */
+  pic: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Profile
+   */
+  userId: string;
+  /**
+   *
+   * @type {?JSONValue}
+   * @memberof Profile
+   */
+  attributes: JSONValue;
+}
+
+/**
+ *
+ * @export
+ * @interface Review
+ */
+export interface Review {
+  /**
+   *
+   * @type {string}
+   * @memberof Review
+   */
+  id: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Review
+   */
+  createdAt: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Review
+   */
+  updatedAt: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Review
+   */
+  creatorId: string;
+  /**
+   *
+   * @type {?string}
+   * @memberof Review
+   */
+  organizationId: string | null;
+  /**
+   *
+   * @type {Visibility}
+   * @memberof Review
+   */
+  visibility: Visibility;
+  /**
+   *
+   * @type {boolean}
+   * @memberof Review
+   */
+  active: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Review
+   */
+  trial1Id: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Review
+   */
+  trial2Id: string;
+  /**
+   *
+   * @type {Array<Comment>}
+   * @memberof Review
+   */
+  comments: Array<Comment>;
+}
+
+/**
+ *
+ * @export
+ * @interface RoleByOrganization
+ */
+export interface RoleByOrganization {
+  /**
+   *
+   * @type {string}
+   * @memberof RoleByOrganization
+   */
+  createdAt: string;
+  /**
+   *
+   * @type {string}
+   * @memberof RoleByOrganization
+   */
+  updatedAt: string;
+  /**
+   *
+   * @type {UserRole}
+   * @memberof RoleByOrganization
+   */
+  role: UserRole;
+  /**
+   *
+   * @type {string}
+   * @memberof RoleByOrganization
+   */
+  userId: string;
+  /**
+   *
+   * @type {string}
+   * @memberof RoleByOrganization
+   */
+  organizationId: string;
+}
+
+/**
+ *
+ * @export
+ * @interface Session
+ */
+export interface Session {
+  /**
+   *
+   * @type {string}
+   * @memberof Session
+   */
+  id: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Session
+   */
+  createdAt: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Session
+   */
+  updatedAt: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Session
+   */
+  sessionToken: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Session
+   */
+  userId: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Session
+   */
+  expires: string; // DateTime
+}
+
+/**
+ *
+ * @export
+ * @interface StripeCustomer
+ */
+export interface StripeCustomer {
+  /**
+   *
+   * @type {string}
+   * @memberof StripeCustomer
+   */
+  id: string;
+  /**
+   *
+   * @type {string}
+   * @memberof StripeCustomer
+   */
+  createdAt: string;
+  /**
+   *
+   * @type {string}
+   * @memberof StripeCustomer
+   */
+  updatedAt: string;
+  /**
+   *
+   * @type {string}
+   * @memberof StripeCustomer
+   */
+  stripedCustomerID: string;
+  /**
+   *
+   * @type {?string}
+   * @memberof StripeCustomer
+   */
+  stripeProductId: string | null;
+  /**
+   *
+   * @type {?string}
+   * @memberof StripeCustomer
+   */
+  stripeSubscriptionId: string | null;
+  /**
+   *
+   * @type {?string}
+   * @memberof StripeCustomer
+   */
+  stripeSubscriptionName: string | null;
+  /**
+   *
+   * @type {?string}
+   * @memberof StripeCustomer
+   */
+  paymentStatus: string | null;
+  /**
+   *
+   * @type {string}
+   * @memberof StripeCustomer
+   */
+  userId: string;
+  /**
+   *
+   * @type {?JSONValue}
+   * @memberof StripeCustomer
+   */
+  attributes: JSONValue | null;
+}
+
+/**
+ *
+ * @export
+ * @interface Tag
+ */
+export interface Tag {
+  /**
+   *
+   * @type {string}
+   * @memberof Tag
+   */
+  id: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Tag
+   */
+  createdAt: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Review
+   */
+  updatedAt: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Review
+   */
+  creatorId: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Review
+   */
+  name: string;
+  /**
+   *
+   * @type {?string}
+   * @memberof Review
+   */
+  description: string | null;
+  /**
+   *
+   * @type {?JSONValue}
+   * @memberof Review
+   */
+  attributes: JSONValue | null;
+}
 
 /**
  *
@@ -353,6 +937,55 @@ export interface User {
   attributes: JSONValue | null;
 }
 
+export enum UserRole {
+  ADMIN = "ADMIN",
+  MEMBER = "MEMBER",
+}
+
+/**
+ *
+ * @export
+ * @interface UserSetting
+ */
+export interface UserSetting {
+  /**
+   *
+   * @type {string}
+   * @memberof UserSetting
+   */
+  id: string;
+  /**
+   *
+   * @type {string}
+   * @memberof UserSetting
+   */
+  createdAt: string;
+  /**
+   *
+   * @type {string}
+   * @memberof UserSetting
+   */
+  updatedAt: string;
+  /**
+   *
+   * @type {string}
+   * @memberof UserSetting
+   */
+  userId: string;
+  /**
+   *
+   * @type {?JSONValue}
+   * @memberof UserSetting
+   */
+  properties: JSONValue | null;
+  /**
+   *
+   * @type {?JSONValue}
+   * @memberof UserSetting
+   */
+  attributes: JSONValue | null;
+}
+
 export enum Visibility {
   // Only visible to creator
   PRIVATE = "PRIVATE",
@@ -366,6 +999,80 @@ export enum Visibility {
 
   // Visible to everyone
   PUBLIC = "PUBLIC",
+}
+
+/**
+ *
+ * @export
+ * @interface Workspace
+ */
+export interface Workspace {
+  /**
+   *
+   * @type {string}
+   * @memberof Workspace
+   */
+  id: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Workspace
+   */
+  createdAt: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Workspace
+   */
+  updatedAt: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Workspace
+   */
+  creatorId: string;
+  /**
+   *
+   * @type {?string}
+   * @memberof Workspace
+   */
+  organizationId: string | null;
+  /**
+   *
+   * @type {Visibility}
+   * @memberof Workspace
+   */
+  visibility: Visibility;
+  /**
+   *
+   * @type {string}
+   * @memberof Workspace
+   */
+  name: string;
+  /**
+   *
+   * @type {Array<Experiment>}
+   * @memberof Workspace
+   */
+  experiments: Array<Experiment>;
+  /**
+   *
+   * @type {?string}
+   * @memberof Workspace
+   */
+  primaryExperimentId: string | null;
+  /**
+   *
+   * @type {boolean}
+   * @memberof Workspace
+   */
+  active: string;
+  /**
+   *
+   * @type {?JSONValue}
+   * @memberof Workspace
+   */
+  attributes: JSONValue | null;
 }
 
 /**
