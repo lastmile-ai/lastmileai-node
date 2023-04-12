@@ -2522,7 +2522,7 @@ export class LastMileAIApi {
   /**
    *
    * @summary Deletes a specified Dataset
-   * @param {string} id The ID of the Dataset to delete
+   * @param {string} id The id of the Dataset to delete
    */
   public async deleteDataset(id: string): Promise<{ status: string }> {
     const res = await axios.delete("datasets/delete", {
@@ -2605,7 +2605,7 @@ export class LastMileAIApi {
   /**
    *
    * @summary Deletes a specified EmbeddingCollection
-   * @param {string} id The ID of the EmbeddingCollection to delete
+   * @param {string} id The id of the EmbeddingCollection to delete
    */
   public async deleteEmbeddingCollection(
     id: string
@@ -2692,7 +2692,7 @@ export class LastMileAIApi {
   /**
    *
    * @summary Deletes a specified Experiment
-   * @param {string} id The ID of the Experiment to delete
+   * @param {string} id The id of the Experiment to delete
    */
   public async deleteExperiment(id: string): Promise<{ status: string }> {
     const res = await axios.delete("experiments/delete", {
@@ -2812,7 +2812,7 @@ export class LastMileAIApi {
   /**
    *
    * @summary Deletes a specified Model
-   * @param {string} id The ID of the Model to delete
+   * @param {string} id The id of the Model to delete
    */
   public async deleteModel(id: string): Promise<{ status: string }> {
     const res = await axios.delete("models/delete", {
@@ -2936,7 +2936,7 @@ export class LastMileAIApi {
   /**
    *
    * @summary Deletes a specified Organization
-   * @param {string} id The ID of the Organization to delete
+   * @param {string} id The id of the Organization to delete
    */
   public async deleteOrganization(id: string): Promise<{ status: string }> {
     const res = await axios.delete("orgs/delete", {
@@ -2991,6 +2991,98 @@ export class LastMileAIApi {
     const res = await axios.put(
       "orgs/update",
       { ...data, id },
+      this.configuration.defaultAxiosConfig
+    );
+    return res.data;
+  }
+
+  /**
+   * ORGANIZATION MEMBERS
+   */
+
+  /**
+   *
+   * @summary Accept the invite to an Organization
+   * @param {string} id The id of the Organization to accept the invite for
+   */
+  public async acceptOrganizationInvite(
+    id: string
+  ): Promise<{ status: string }> {
+    const res = await axios.post(
+      "orgs/members/acceptinvite",
+      { id },
+      this.configuration.defaultAxiosConfig
+    );
+    return res.data;
+  }
+
+  /**
+   *
+   * @summary Add a member to an Organization
+   * @param {string} id The id of the Organization to add the member to
+   * @param {string} email The email of the member to add to the organization
+   */
+  public async addOrganizationMember(
+    id: string,
+    email: string
+  ): Promise<{ status: string }> {
+    const res = await axios.post(
+      "orgs/members/add",
+      { id, email },
+      this.configuration.defaultAxiosConfig
+    );
+    return res.data;
+  }
+
+  /**
+   *
+   * @summary Change the role of a member within the organization
+   * @param {string} id The id of the Organization
+   * @param {string} memberId The id of the organization member whose role will be updated
+   * @param {UserRole} role The new UserRole for the organization member
+   */
+  public async changeOrganizationMemberRole(
+    id: string,
+    memberId: string,
+    role: UserRole
+  ): Promise<{ status: string }> {
+    const res = await axios.post(
+      "orgs/members/changerole",
+      { id, memberId, role },
+      this.configuration.defaultAxiosConfig
+    );
+    return res.data;
+  }
+
+  /**
+   *
+   * @summary Reject the invite to an Organization
+   * @param {string} id The id of the Organization to reject the invite for
+   */
+  public async rejectOrganizationInvite(
+    id: string
+  ): Promise<{ status: string }> {
+    const res = await axios.post(
+      "orgs/members/rejectInvite",
+      { id },
+      this.configuration.defaultAxiosConfig
+    );
+    return res.data;
+  }
+
+  /**
+   *
+   * @summary Remove a member to an Organization
+   * @param {string} id The id of the Organization to remove the member from
+   * @param {string} email The email of the member to remove from the organization
+   */
+  public async removeOrganizationMember(
+    id: string,
+    email: string
+  ): Promise<{ status: string }> {
+    const res = await axios.post(
+      "orgs/members/remove",
+      { id, email },
       this.configuration.defaultAxiosConfig
     );
     return res.data;
