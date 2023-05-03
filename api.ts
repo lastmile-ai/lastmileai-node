@@ -26,16 +26,16 @@ export interface Account {
   id: string;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof Account
    */
-  createdAt: string;
+  createdAt: Date;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof Account
    */
-  updatedAt: string;
+  updatedAt: Date;
   /**
    *
    * @type {string}
@@ -136,16 +136,16 @@ export interface ApiToken {
   id: string;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof ApiToken
    */
-  createdAt: string;
+  createdAt: Date;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof ApiToken
    */
-  updatedAt: string;
+  updatedAt: Date;
   /**
    *
    * @type {string}
@@ -192,16 +192,16 @@ export interface Comment {
   id: string;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof Comment
    */
-  createdAt: string;
+  createdAt: Date;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof Comment
    */
-  updatedAt: string;
+  updatedAt: Date;
   /**
    *
    * @type {?string}
@@ -303,16 +303,16 @@ export interface Feedback {
   id: string;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof Feedback
    */
-  createdAt: string;
+  createdAt: Date;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof Feedback
    */
-  updatedAt: string;
+  updatedAt: Date;
   /**
    *
    * @type {string}
@@ -347,16 +347,16 @@ export interface Feedback {
 export interface InvitedMember {
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof InvitedMember
    */
-  createdAt: string;
+  createdAt: Date;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof InvitedMember
    */
-  updatedAt: string;
+  updatedAt: Date;
   /**
    *
    * @type {string}
@@ -397,16 +397,16 @@ export interface Profile {
   id: string;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof Profile
    */
-  createdAt: string;
+  createdAt: Date;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof Profile
    */
-  updatedAt: string;
+  updatedAt: Date;
   /**
    *
    * @type {string}
@@ -447,16 +447,16 @@ export interface Profile {
 export interface RoleByOrganization {
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof RoleByOrganization
    */
-  createdAt: string;
+  createdAt: Date;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof RoleByOrganization
    */
-  updatedAt: string;
+  updatedAt: Date;
   /**
    *
    * @type {UserRole}
@@ -491,16 +491,16 @@ export interface Session {
   id: string;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof Session
    */
-  createdAt: string;
+  createdAt: Date;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof Session
    */
-  updatedAt: string;
+  updatedAt: Date;
   /**
    *
    * @type {string}
@@ -535,16 +535,16 @@ export interface StripeCustomer {
   id: string;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof StripeCustomer
    */
-  createdAt: string;
+  createdAt: Date;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof StripeCustomer
    */
-  updatedAt: string;
+  updatedAt: Date;
   /**
    *
    * @type {string}
@@ -603,16 +603,16 @@ export interface Tag {
   id: string;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof Tag
    */
-  createdAt: string;
+  createdAt: Date;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof Review
    */
-  updatedAt: string;
+  updatedAt: Date;
   /**
    *
    * @type {string}
@@ -653,16 +653,16 @@ export interface User {
   id: string;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof User
    */
-  createdAt: string;
+  createdAt: Date;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof User
    */
-  updatedAt: string;
+  updatedAt: Date;
   /**
    *
    * @type {?string}
@@ -822,16 +822,16 @@ export interface UserSetting {
   id: string;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof UserSetting
    */
-  createdAt: string;
+  createdAt: Date;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof UserSetting
    */
-  updatedAt: string;
+  updatedAt: Date;
   /**
    *
    * @type {string}
@@ -893,16 +893,16 @@ export interface Dataset {
   id: string;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof Dataset
    */
-  createdAt: string;
+  createdAt: Date;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof Dataset
    */
-  updatedAt: string;
+  updatedAt: Date;
   /**
    *
    * @type {string}
@@ -1079,16 +1079,16 @@ export interface EmbeddingCollection {
   id: string;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof EmbeddingCollection
    */
-  createdAt: string;
+  createdAt: Date;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof EmbeddingCollection
    */
-  updatedAt: string;
+  updatedAt: Date;
   /**
    *
    * @type {JSONValue}
@@ -1177,16 +1177,16 @@ export interface EmbeddingData {
   id: string;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof EmbeddingData
    */
-  createdAt: string;
+  createdAt: Date;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof EmbeddingData
    */
-  updatedAt: string;
+  updatedAt: Date;
   /**
    *
    * @type {string}
@@ -1302,16 +1302,16 @@ export interface Experiment {
   id: string;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof Experiment
    */
-  createdAt: string;
+  createdAt: Date;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof Experiment
    */
-  updatedAt: string;
+  updatedAt: Date;
   /**
    *
    * @type {string}
@@ -1488,16 +1488,16 @@ export interface Model {
   id: string;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof Model
    */
-  createdAt: string;
+  createdAt: Date;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof Model
    */
-  updatedAt: string;
+  updatedAt: Date;
   /**
    *
    * @type {string}
@@ -1710,16 +1710,16 @@ export interface Notification {
   id: string;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof Notification
    */
-  createdAt: string;
+  createdAt: Date;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof Notification
    */
-  updatedAt: string;
+  updatedAt: Date;
   /**
    *
    * @type {string}
@@ -1792,16 +1792,16 @@ export interface Organization {
   id: string;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof Organization
    */
-  createdAt: string;
+  createdAt: Date;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof Organization
    */
-  updatedAt: string;
+  updatedAt: Date;
   /**
    *
    * @type {string}
@@ -1960,16 +1960,16 @@ export interface Review {
   id: string;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof Review
    */
-  createdAt: string;
+  createdAt: Date;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof Review
    */
-  updatedAt: string;
+  updatedAt: Date;
   /**
    *
    * @type {string}
@@ -2053,16 +2053,16 @@ export interface SanitizedToken {
   id: string;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof SanitizedToken
    */
-  createdAt: string;
+  createdAt: Date;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof SanitizedToken
    */
-  name: string;
+  name: Date;
   /**
    *
    * @type {?string}
@@ -2079,10 +2079,10 @@ export interface SanitizedToken {
 export interface Token extends SanitizedToken {
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof Token
    */
-  updatedAt: string;
+  updatedAt: Date;
   /**
    *
    * @type {string}
@@ -2203,16 +2203,16 @@ export interface Trial {
   id: string;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof Trial
    */
-  createdAt: string;
+  createdAt: Date;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof Trial
    */
-  updatedAt: string;
+  updatedAt: Date;
   /**
    *
    * @type {string}
@@ -2495,16 +2495,16 @@ export interface TrialStep {
   id: string;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof TrialStep
    */
-  createdAt: string;
+  createdAt: Date;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof TrialStep
    */
-  updatedAt: string;
+  updatedAt: Date;
   /**
    *
    * @type {string}
@@ -2587,16 +2587,16 @@ export interface TrialStepFeedback {
   id: string;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof TrialStepFeedback
    */
-  createdAt: string;
+  createdAt: Date;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof TrialStepFeedback
    */
-  updatedAt: string;
+  updatedAt: Date;
   /**
    *
    * @type {string}
@@ -2725,16 +2725,16 @@ export interface Upload {
   id: string;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof Upload
    */
-  createdAt: string;
+  createdAt: Date;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof Upload
    */
-  updatedAt: string;
+  updatedAt: Date;
   /**
    *
    * @type {string}
@@ -2871,16 +2871,16 @@ export interface Workspace {
   id: string;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof Workspace
    */
-  createdAt: string;
+  createdAt: Date;
   /**
    *
-   * @type {string}
+   * @type {Date}
    * @memberof Workspace
    */
-  updatedAt: string;
+  updatedAt: Date;
   /**
    *
    * @type {string}
@@ -3197,15 +3197,15 @@ export class LastMileAIApi {
    * @summary Returns the status of an EmbeddingCollection
    * @param {string} id The id of the EmbeddingCollection to obtain status of
    */
-    public async embeddingCollectionStatus(
-      id: string
-    ): Promise<EmbeddingCollectionStatusResponse> {
-      const res = await axios.get("embeddings/status", {
-        ...this.configuration.defaultAxiosConfig,
-        params: { id },
-      });
-      return res.data;
-    }
+  public async embeddingCollectionStatus(
+    id: string
+  ): Promise<EmbeddingCollectionStatusResponse> {
+    const res = await axios.get("embeddings/status", {
+      ...this.configuration.defaultAxiosConfig,
+      params: { id },
+    });
+    return res.data;
+  }
 
   /**
    *
