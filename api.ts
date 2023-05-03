@@ -217,32 +217,37 @@ export interface User {
   attributes: JSONValue | null;
 }
 
-export type UserRole = "ADMIN" | "MEMBER";
+export enum UserRole {
+  ADMIN = "ADMIN",
+  MEMBER = "MEMBER",
+}
 
-export type Visibility =
+export enum Visibility {
   // Only visible to creator
-  | "PRIVATE"
+  PRIVATE = "PRIVATE",
 
   // Only visible to creator and recursive members of entity and parent entities.
   // For example, if you create trial T in experiment E in workspace W,
   // T will be visible to members explicitly specified for T, plus
   // members with access to E, plus
   // members with access to W.
-  | "MEMBER"
+  MEMBER = "MEMBER",
 
   // Visible to everyone
-  | "PUBLIC";
+  PUBLIC = "PUBLIC",
+}
 
 /**
  * DATASET TYPES
  */
 
-export type DatasetType =
+export enum DatasetType {
   // A website link or links that can be accessed without any authentication
-  | "PUBLIC_URL"
+  PUBLIC_URL = "PUBLIC_URL",
 
   // A file or set of files
-  | "FILES";
+  FILES = "FILES",
+}
 
 /**
  *
@@ -1516,12 +1521,18 @@ export type ListPublicTokensResponse = {
  * TRIAL TYPES
  */
 
-export type TrialType = "INFERENCE" | "FINE_TUNE";
+export enum TrialType {
+  INFERENCE = "INFERENCE",
+  FINE_TUNE = "FINE_TUNE",
+}
 
 /**
  * State of a trial -- once a trial is closed, its model is available for consumption
  */
-export type TrialState = "OPEN" | "CLOSED";
+export enum TrialState {
+  OPEN = "OPEN",
+  CLOSED = "CLOSED",
+}
 
 /**
  *
