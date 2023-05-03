@@ -15,172 +15,6 @@ import { Configuration } from "./configuration";
 /**
  *
  * @export
- * @interface Account
- */
-export interface Account {
-  /**
-   *
-   * @type {string}
-   * @memberof Account
-   */
-  id: string;
-  /**
-   *
-   * @type {Date}
-   * @memberof Account
-   */
-  createdAt: Date;
-  /**
-   *
-   * @type {Date}
-   * @memberof Account
-   */
-  updatedAt: Date;
-  /**
-   *
-   * @type {string}
-   * @memberof Account
-   */
-  userId: string;
-  /**
-   *
-   * @type {string}
-   * @memberof Account
-   */
-  type: string;
-  /**
-   *
-   * @type {string}
-   * @memberof Account
-   */
-  provider: string;
-  /**
-   *
-   * @type {string}
-   * @memberof Account
-   */
-  providerAccountId: string;
-  /**
-   *
-   * @type {?string}
-   * @memberof Account
-   */
-  refresh_token: string | null;
-  /**
-   *
-   * @type {?number}
-   * @memberof Account
-   */
-  refresh_token_expires_in: number | null;
-  /**
-   *
-   * @type {?string}
-   * @memberof Account
-   */
-  access_token: string | null;
-  /**
-   *
-   * @type {?number}
-   * @memberof Account
-   */
-  expires_at: number | null;
-  /**
-   *
-   * @type {?string}
-   * @memberof Account
-   */
-  token_type: string | null;
-  /**
-   *
-   * @type {?string}
-   * @memberof Account
-   */
-  scope: string | null;
-  /**
-   *
-   * @type {?string}
-   * @memberof Account
-   */
-  id_token: string | null;
-  /**
-   *
-   * @type {?string}
-   * @memberof Account
-   */
-  session_state: string | null;
-  /**
-   *
-   * @type {?string}
-   * @memberof Account
-   */
-  oauth_token_secret: string | null;
-  /**
-   *
-   * @type {?string}
-   * @memberof Account
-   */
-  oauth_token: string | null;
-}
-
-/**
- *
- * @export
- * @interface ApiToken
- */
-export interface ApiToken {
-  /**
-   *
-   * @type {string}
-   * @memberof ApiToken
-   */
-  id: string;
-  /**
-   *
-   * @type {Date}
-   * @memberof ApiToken
-   */
-  createdAt: Date;
-  /**
-   *
-   * @type {Date}
-   * @memberof ApiToken
-   */
-  updatedAt: Date;
-  /**
-   *
-   * @type {string}
-   * @memberof ApiToken
-   */
-  name: string;
-  /**
-   *
-   * @type {string}
-   * @memberof ApiToken
-   */
-  token: string;
-  /**
-   *
-   * @type {?string}
-   * @memberof ApiToken
-   */
-  lastUsed: string | null;
-  /**
-   *
-   * @type {boolean}
-   * @memberof ApiToken
-   */
-  invalidated: boolean;
-  /**
-   *
-   * @type {string}
-   * @memberof ApiToken
-   */
-  userId: string;
-}
-
-/**
- *
- * @export
  * @interface Comment
  */
 export interface Comment {
@@ -292,156 +126,6 @@ export type CommonListResponseData = {
 /**
  *
  * @export
- * @interface Feedback
- */
-export interface Feedback {
-  /**
-   *
-   * @type {string}
-   * @memberof Feedback
-   */
-  id: string;
-  /**
-   *
-   * @type {Date}
-   * @memberof Feedback
-   */
-  createdAt: Date;
-  /**
-   *
-   * @type {Date}
-   * @memberof Feedback
-   */
-  updatedAt: Date;
-  /**
-   *
-   * @type {string}
-   * @memberof Feedback
-   */
-  userId: string;
-  /**
-   *
-   * @type {string}
-   * @memberof Feedback
-   */
-  feedback: string;
-  /**
-   *
-   * @type {?string}
-   * @memberof Feedback
-   */
-  page: string | null;
-  /**
-   *
-   * @type {?JSONValue}
-   * @memberof Feedback
-   */
-  attributes: JSONValue | null;
-}
-
-/**
- *
- * @export
- * @interface InvitedMember
- */
-export interface InvitedMember {
-  /**
-   *
-   * @type {Date}
-   * @memberof InvitedMember
-   */
-  createdAt: Date;
-  /**
-   *
-   * @type {Date}
-   * @memberof InvitedMember
-   */
-  updatedAt: Date;
-  /**
-   *
-   * @type {string}
-   * @memberof InvitedMember
-   */
-  organizationId: string;
-  /**
-   *
-   * @type {string}
-   * @memberof InvitedMember
-   */
-  email: string;
-  /**
-   *
-   * @type {?string}
-   * @memberof InvitedMember
-   */
-  userId: string | null;
-  /**
-   *
-   * @type {boolean}
-   * @memberof InvitedMember
-   */
-  acceptedInvite: boolean;
-}
-
-/**
- *
- * @export
- * @interface Profile
- */
-export interface Profile {
-  /**
-   *
-   * @type {string}
-   * @memberof Profile
-   */
-  id: string;
-  /**
-   *
-   * @type {Date}
-   * @memberof Profile
-   */
-  createdAt: Date;
-  /**
-   *
-   * @type {Date}
-   * @memberof Profile
-   */
-  updatedAt: Date;
-  /**
-   *
-   * @type {string}
-   * @memberof Profile
-   */
-  name: string;
-  /**
-   *
-   * @type {string}
-   * @memberof Profile
-   */
-  bio: string;
-  /**
-   *
-   * @type {string}
-   * @memberof Profile
-   */
-  pic: string;
-  /**
-   *
-   * @type {string}
-   * @memberof Profile
-   */
-  userId: string;
-  /**
-   *
-   * @type {?JSONValue}
-   * @memberof Profile
-   */
-  attributes: JSONValue;
-}
-
-/**
- *
- * @export
  * @interface RoleByOrganization
  */
 export interface RoleByOrganization {
@@ -480,168 +164,6 @@ export interface RoleByOrganization {
 /**
  *
  * @export
- * @interface Session
- */
-export interface Session {
-  /**
-   *
-   * @type {string}
-   * @memberof Session
-   */
-  id: string;
-  /**
-   *
-   * @type {Date}
-   * @memberof Session
-   */
-  createdAt: Date;
-  /**
-   *
-   * @type {Date}
-   * @memberof Session
-   */
-  updatedAt: Date;
-  /**
-   *
-   * @type {string}
-   * @memberof Session
-   */
-  sessionToken: string;
-  /**
-   *
-   * @type {string}
-   * @memberof Session
-   */
-  userId: string;
-  /**
-   *
-   * @type {string}
-   * @memberof Session
-   */
-  expires: string; // DateTime
-}
-
-/**
- *
- * @export
- * @interface StripeCustomer
- */
-export interface StripeCustomer {
-  /**
-   *
-   * @type {string}
-   * @memberof StripeCustomer
-   */
-  id: string;
-  /**
-   *
-   * @type {Date}
-   * @memberof StripeCustomer
-   */
-  createdAt: Date;
-  /**
-   *
-   * @type {Date}
-   * @memberof StripeCustomer
-   */
-  updatedAt: Date;
-  /**
-   *
-   * @type {string}
-   * @memberof StripeCustomer
-   */
-  stripedCustomerID: string;
-  /**
-   *
-   * @type {?string}
-   * @memberof StripeCustomer
-   */
-  stripeProductId: string | null;
-  /**
-   *
-   * @type {?string}
-   * @memberof StripeCustomer
-   */
-  stripeSubscriptionId: string | null;
-  /**
-   *
-   * @type {?string}
-   * @memberof StripeCustomer
-   */
-  stripeSubscriptionName: string | null;
-  /**
-   *
-   * @type {?string}
-   * @memberof StripeCustomer
-   */
-  paymentStatus: string | null;
-  /**
-   *
-   * @type {string}
-   * @memberof StripeCustomer
-   */
-  userId: string;
-  /**
-   *
-   * @type {?JSONValue}
-   * @memberof StripeCustomer
-   */
-  attributes: JSONValue | null;
-}
-
-/**
- *
- * @export
- * @interface Tag
- */
-export interface Tag {
-  /**
-   *
-   * @type {string}
-   * @memberof Tag
-   */
-  id: string;
-  /**
-   *
-   * @type {Date}
-   * @memberof Tag
-   */
-  createdAt: Date;
-  /**
-   *
-   * @type {Date}
-   * @memberof Review
-   */
-  updatedAt: Date;
-  /**
-   *
-   * @type {string}
-   * @memberof Review
-   */
-  creatorId: string;
-  /**
-   *
-   * @type {string}
-   * @memberof Review
-   */
-  name: string;
-  /**
-   *
-   * @type {?string}
-   * @memberof Review
-   */
-  description: string | null;
-  /**
-   *
-   * @type {?JSONValue}
-   * @memberof Review
-   */
-  attributes: JSONValue | null;
-}
-
-/**
- *
- * @export
  * @interface User
  */
 export interface User {
@@ -671,6 +193,12 @@ export interface User {
   email: string | null;
   /**
    *
+   * @type {?string}
+   * @memberof User
+   */
+  name: string | null;
+  /**
+   *
    * @type {?string} // DateTime
    * @memberof User
    */
@@ -683,201 +211,38 @@ export interface User {
   image: string | null;
   /**
    *
-   * @type {Array<Account>}
-   * @memberof User
-   */
-  accounts: Array<Account>;
-  /**
-   *
-   * @type {Array<Session}
-   * @memberof User
-   */
-  sessions: Array<Session>;
-  /**
-   *
-   * @type {Array<ApiToken>}
-   * @memberof User
-   */
-  apiTokens: Array<ApiToken>;
-  /**
-   *
-   * @type {Array<Organization>}
-   * @memberof User
-   */
-  organizations: Array<Organization>;
-  /**
-   *
-   * @type {Array<RoleByOrganization>}
-   * @memberof User
-   */
-  rolesByOrganization: Array<RoleByOrganization>;
-  /**
-   *
-   * @type {?Profile}
-   * @memberof User
-   */
-  profile: Profile | null;
-  /**
-   *
-   * @type {?UserSetting}
-   * @memberof User
-   */
-  userSetting: UserSetting | null;
-  /**
-   *
-   * @type {?StripeCustomer}
-   * @memberof User
-   */
-  stripeCustomer: StripeCustomer | null;
-  /**
-   *
-   * @type {Array<Trial>}
-   * @memberof User
-   */
-  createdTrials: Array<Trial>;
-  /**
-   *
-   * @type {Array<TrialStep>}
-   * @memberof User
-   */
-  createdTrialSteps: Array<TrialStep>;
-  /**
-   *
-   * @type {Array<Upload>}
-   * @memberof User
-   */
-  createdUploads: Array<Upload>;
-  /**
-   *
-   * @type {Array<InvitedMember>}
-   * @memberof User
-   */
-  userInvites: Array<InvitedMember>;
-  /**
-   *
-   * @type {Array<Notification>}
-   * @memberof User
-   */
-  userNotifications: Array<Notification>;
-  /**
-   *
-   * @type {Array<Comment>}
-   * @memberof User
-   */
-  userComments: Array<Comment>;
-  /**
-   *
-   * @type {Array<Feedback>}
-   * @memberof User
-   */
-  userFeedback: Array<Feedback>;
-  /**
-   *
-   * @type {Array<Review>}
-   * @memberof User
-   */
-  createdReviews: Array<Review>;
-  /**
-   *
-   * @type {Array<EmbeddingCollection>}
-   * @memberof User
-   */
-  createdEmbeddingCollections: Array<EmbeddingCollection>;
-  /**
-   *
-   * @type {Array<Dataset>}
-   * @memberof User
-   */
-  createadDatasets: Array<Dataset>;
-  /**
-   *
-   * @type {Array<Tag>}
-   * @memberof User
-   */
-  createdTags: Array<Tag>;
-  /**
-   *
    * @type {?JSONValue}
    * @memberof User
    */
   attributes: JSONValue | null;
 }
 
-export enum UserRole {
-  ADMIN = "ADMIN",
-  MEMBER = "MEMBER",
-}
+export type UserRole = "ADMIN" | "MEMBER";
 
-/**
- *
- * @export
- * @interface UserSetting
- */
-export interface UserSetting {
-  /**
-   *
-   * @type {string}
-   * @memberof UserSetting
-   */
-  id: string;
-  /**
-   *
-   * @type {Date}
-   * @memberof UserSetting
-   */
-  createdAt: Date;
-  /**
-   *
-   * @type {Date}
-   * @memberof UserSetting
-   */
-  updatedAt: Date;
-  /**
-   *
-   * @type {string}
-   * @memberof UserSetting
-   */
-  userId: string;
-  /**
-   *
-   * @type {?JSONValue}
-   * @memberof UserSetting
-   */
-  properties: JSONValue | null;
-  /**
-   *
-   * @type {?JSONValue}
-   * @memberof UserSetting
-   */
-  attributes: JSONValue | null;
-}
-
-export enum Visibility {
+export type Visibility =
   // Only visible to creator
-  PRIVATE = "PRIVATE",
+  | "PRIVATE"
 
   // Only visible to creator and recursive members of entity and parent entities.
   // For example, if you create trial T in experiment E in workspace W,
   // T will be visible to members explicitly specified for T, plus
   // members with access to E, plus
   // members with access to W.
-  MEMBER = "MEMBER",
+  | "MEMBER"
 
   // Visible to everyone
-  PUBLIC = "PUBLIC",
-}
+  | "PUBLIC";
 
 /**
  * DATASET TYPES
  */
 
-export enum DatasetType {
+export type DatasetType =
   // A website link or links that can be accessed without any authentication
-  PUBLIC_URL = "PUBLIC_URL",
+  | "PUBLIC_URL"
 
   // A file or set of files
-  FILES = "FILES",
-}
+  | "FILES";
 
 /**
  *
@@ -963,25 +328,6 @@ export interface Dataset {
    * @memberof Dataset
    */
   jobCreatedAt: string | null;
-  /**
-   *
-   * @type {Array<EmbeddingCollection>}
-   * @memberof Dataset
-   */
-  embeddingCollections: Array<EmbeddingCollection>;
-  /**
-   *
-   * @type {Array<Upload>}
-   * @memberof Dataset
-   */
-  uploads: Array<Upload>;
-  /**
-   * A dataset isn't associated explicitly with a single model, but if it is used in a model fork,
-   * the reference is recorded here
-   * @type {Array<Model>}
-   * @memberof Dataset
-   */
-  models: Array<Model>;
 }
 
 /**
@@ -1045,15 +391,20 @@ export type CreateDatasetResponse = Dataset;
  * @type ListDatasetsResponse
  * @export
  */
-export type ListDatasetsResponse = Array<
-  { datasets: Array<Dataset> } & CommonListResponseData
->;
+export type ListDatasetsResponse = {
+  datasets: Array<Dataset>;
+} & CommonListResponseData;
 
 /**
  * @type ReadDatasetResponse
  * @export
  */
-export type ReadDatasetResponse = Dataset;
+export type ReadDatasetResponse = Dataset & {
+  members: Array<User>;
+  organization: Organization;
+  embeddingCollections: Array<EmbeddingCollection>;
+  uploads: Array<Upload>;
+};
 
 /**
  * @type UpdateDatasetResponse
@@ -1133,6 +484,12 @@ export interface EmbeddingCollection {
   creatorId: string;
   /**
    *
+   * @type {string}
+   * @memberof EmbeddingCollection
+   */
+  datasetId: string;
+  /**
+   *
    * @type {?string}
    * @memberof EmbeddingCollection
    */
@@ -1151,16 +508,16 @@ export interface EmbeddingCollection {
   active: boolean;
   /**
    *
-   * @type {Array<EmbeddingData>}
+   * @type {?string}
    * @memberof EmbeddingCollection
    */
-  embeddings: Array<EmbeddingData>;
+  jobId: string | null;
   /**
    *
-   * @type {Array<Model>}
+   * @type {?string}
    * @memberof EmbeddingCollection
    */
-  models: Array<Model>;
+  jobCreatedAt: string | null;
 }
 
 /**
@@ -1258,15 +615,19 @@ export type CreateEmbeddingCollectionResponse = EmbeddingCollection;
  * @type ListEmbeddingCollectionsResponse
  * @export
  */
-export type ListEmbeddingCollectionsResponse = Array<
-  { embeddingCollections: Array<EmbeddingCollection> } & CommonListResponseData
->;
+export type ListEmbeddingCollectionsResponse = {
+  embeddingCollections: Array<ReadEmbeddingCollectionResponse>;
+} & CommonListResponseData;
 
 /**
  * @type ReadEmbeddingCollectionResponse
  * @export
  */
-export type ReadEmbeddingCollectionResponse = EmbeddingCollection;
+export type ReadEmbeddingCollectionResponse = EmbeddingCollection & {
+  embeddings: Array<EmbeddingData & { upload: Upload }>;
+  members: Array<User>;
+  organization: Organization;
+};
 
 export type EmbeddingCollectionStatus = "PROCESSING" | "READY" | "ERROR";
 
@@ -1368,12 +729,6 @@ export interface Experiment {
   fineTuningSchema: JSONValue | null;
   /**
    *
-   * @type {Array<Trial>}
-   * @memberof Experiment
-   */
-  trials: Array<Trial>;
-  /**
-   *
    * @type {?string}
    * @memberof Experiment
    */
@@ -1454,15 +809,20 @@ export type CreateExperimentResponse = Experiment;
  * @type ListExperimentsResponse
  * @export
  */
-export type ListExperimentsResponse = Array<
-  { experiments: Array<Experiment> } & CommonListResponseData
->;
+export type ListExperimentsResponse = {
+  experiments: Array<Experiment>;
+} & CommonListResponseData;
 
 /**
  * @type ReadExperimentResponse
  * @export
  */
-export type ReadExperimentResponse = Experiment;
+export type ReadExperimentResponse = Experiment & {
+  baseModel: Model | null;
+  members: Array<User>;
+  trials: Array<Trial>;
+  workspace: Workspace;
+};
 
 /**
  * @type UpdateExperimentResponse
@@ -1541,6 +901,12 @@ export interface Model {
    */
   active: boolean;
   /**
+   *
+   * @type {?string}
+   * @memberof Model
+   */
+  parentId: string | null;
+  /**
    * The input-output schema for inference for this model
    * @type {JSONValue | null}
    * @memberof Model
@@ -1554,40 +920,16 @@ export interface Model {
   fineTuningSchema: JSONValue | null;
   /**
    *
-   * @type {Array<EmbeddingCollection>}
-   * @memberof Model
-   */
-  embeddingCollections: Array<EmbeddingCollection>;
-  /**
-   *
-   * @type {Array<Dataset>}
-   * @memberof Model
-   */
-  datasets: Array<Dataset>;
-  /**
-   *
    * @type {?string}
    * @memberof Model
    */
   inferenceEndpoint: string | null;
   /**
    *
-   * @type {Array<Upload>}
-   * @memberof Model
-   */
-  modelUploads: Array<Upload>;
-  /**
-   *
    * @type {JSONValue | null}
    * @memberof Model
    */
   attributes: JSONValue | null;
-  /**
-   *
-   * @type {Array<Experiment>}
-   * @memberof Model
-   */
-  Experiment: Array<Experiment>;
 }
 
 /**
@@ -1676,15 +1018,21 @@ export type CreateModelResponse = Model;
  * @type ListModelsResponse
  * @export
  */
-export type ListModelsResponse = Array<
-  { models: Array<Model> } & CommonListResponseData
->;
+export type ListModelsResponse = {
+  models: Array<Model>;
+} & CommonListResponseData;
 
 /**
  * @type ReadModelResponse
  * @export
  */
-export type ReadModelResponse = Model;
+export type ReadModelResponse = Model & {
+  children: Array<Model>;
+  embeddingCollections: Array<EmbeddingCollection>;
+  members: Array<User>;
+  organization: Organization | null;
+  parent: Model | null;
+};
 
 /**
  * @type UpdateModelResponse
@@ -1744,18 +1092,6 @@ export interface Notification {
    * @memberof Notification
    */
   unread: boolean;
-  /**
-   *
-   * @type {?string}
-   * @memberof Notification
-   */
-  link: string | null;
-  /**
-   *
-   * @type {?JSONValue}
-   * @memberof Notification
-   */
-  attributes: JSONValue | null;
 }
 
 /**
@@ -1770,9 +1106,9 @@ export interface NotificationListQueryData
  * @type ListNotificationsResponse
  * @export
  */
-export type ListNotificationsResponse = Array<
-  { notifications: Array<Notification> } & CommonListResponseData
->;
+export type ListNotificationsResponse = {
+  notifications: Array<Notification>;
+} & CommonListResponseData;
 
 /**
  * ORGANIZATION TYPES
@@ -1814,60 +1150,6 @@ export interface Organization {
    * @memberof Organization
    */
   description: string | null;
-  /**
-   *
-   * @type {Array<User>}
-   * @memberof Organization
-   */
-  members: Array<User>;
-  /**
-   *
-   * @type {Array<RoleByOrganization>}
-   * @memberof Organization
-   */
-  rolesByOrganization: Array<RoleByOrganization>;
-  /**
-   *
-   * @type {Array<InvitedMember>}
-   * @memberof Organization
-   */
-  invitedMembers: Array<InvitedMember>;
-  /**
-   *
-   * @type {Array<Model>}
-   * @memberof Organization
-   */
-  models: Array<Model>;
-  /**
-   *
-   * @type {Array<Workspace>}
-   * @memberof Organization
-   */
-  workspace: Array<Workspace>;
-  /**
-   *
-   * @type {Array<Review>}
-   * @memberof Organization
-   */
-  reviews: Array<Review>;
-  /**
-   *
-   * @type {Array<Trial>}
-   * @memberof Organization
-   */
-  trials: Array<Trial>;
-  /**
-   *
-   * @type {Array<EmbeddingCollection>}
-   * @memberof Organization
-   */
-  embeddingCollections: Array<EmbeddingCollection>;
-  /**
-   *
-   * @type {Array<Dataset>}
-   * @memberof Organization
-   */
-  datasets: Array<Dataset>;
   /**
    *
    * @type {boolean}
@@ -1926,21 +1208,79 @@ export type CreateOrganizationResponse = Organization;
  * @type ListOrganizationsResponse
  * @export
  */
-export type ListOrganizationsResponse = Array<
-  { organizations: Array<Organization> } & CommonListResponseData
->;
+export type ListOrganizationsResponse = {
+  organizations: Array<Organization>;
+} & CommonListResponseData;
 
 /**
  * @type ReadOrganizationResponse
  * @export
  */
-export type ReadOrganizationResponse = Organization;
+export type ReadOrganizationResponse = Organization & {
+  invitedMembers: Array<InvitedMember>;
+  members: Array<User>;
+  rolesByOrganization: Array<RoleByOrganization>;
+};
 
 /**
  * @type UpdateOrganizationResponse
  * @export
  */
 export type UpdateOrganizationResponse = Organization;
+
+/**
+ * ORGANIZATION MEMBER TYPES
+ */
+
+/**
+ *
+ * @export
+ * @interface InvitedMember
+ */
+export interface InvitedMember {
+  /**
+   *
+   * @type {Date}
+   * @memberof InvitedMember
+   */
+  createdAt: Date;
+  /**
+   *
+   * @type {Date}
+   * @memberof InvitedMember
+   */
+  updatedAt: Date;
+  /**
+   *
+   * @type {string}
+   * @memberof InvitedMember
+   */
+  organizationId: string;
+  /**
+   *
+   * @type {string}
+   * @memberof InvitedMember
+   */
+  email: string;
+  /**
+   *
+   * @type {?string}
+   * @memberof InvitedMember
+   */
+  userId: string | null;
+  /**
+   *
+   * @type {boolean}
+   * @memberof InvitedMember
+   */
+  acceptedInvite: boolean;
+}
+
+/**
+ * @type AddOrganizationMemberResponse
+ * @export
+ */
+export type AddOrganizationMemberResponse = InvitedMember;
 
 /**
  * REVIEW TYPES
@@ -2006,12 +1346,6 @@ export interface Review {
    * @memberof Review
    */
   trial2Id: string;
-  /**
-   *
-   * @type {Array<Comment>}
-   * @memberof Review
-   */
-  comments: Array<Comment>;
 }
 
 /**
@@ -2025,15 +1359,21 @@ export interface ReviewListQueryData extends CommonListQueryDataWithSearch {}
  * @type ListReviewsResponse
  * @export
  */
-export type ListReviewsResponse = Array<
-  { reviews: Array<Review> } & CommonListResponseData
->;
+export type ListReviewsResponse = {
+  reviews: Array<Review>;
+} & CommonListResponseData;
 
 /**
  * @type ReadReviewResponse
  * @export
  */
-export type ReadReviewResponse = Review;
+export type ReadReviewResponse = Review & {
+  comments: Array<Comment & { user: User }>;
+  members: Array<User>;
+  organization: Organization | null;
+  trial1: Trial;
+  trial2: Trial;
+};
 
 /**
  * PRIVATE TOKEN TYPES
@@ -2065,10 +1405,10 @@ export interface SanitizedToken {
   name: Date;
   /**
    *
-   * @type {?string}
+   * @type {?Date}
    * @memberof SanitizedToken
    */
-  lastUsed?: string | null;
+  lastUsed?: Date | null;
 }
 
 /**
@@ -2122,9 +1462,9 @@ export type CreateTokenResponse = Token;
  * @type ListTokensResponse
  * @export
  */
-export type ListTokensResponse = Array<
-  { apiTokens: Array<SanitizedToken> } & CommonListResponseData
->;
+export type ListTokensResponse = {
+  apiTokens: Array<SanitizedToken>;
+} & CommonListResponseData;
 
 /**
  * PUBLIC TOKEN TYPES
@@ -2168,26 +1508,20 @@ export type CreatePublicTokenResponse = PublicToken;
  * @type ListPublicTokensResponse
  * @export
  */
-export type ListPublicTokensResponse = Array<
-  { apiTokens: Array<SanitizedToken> } & CommonListResponseData
->;
+export type ListPublicTokensResponse = {
+  apiTokens: Array<SanitizedToken>;
+} & CommonListResponseData;
 
 /**
  * TRIAL TYPES
  */
 
-export enum TrialType {
-  INFERENCE = "INFERENCE",
-  FINE_TUNE = "FINE_TUNE",
-}
+export type TrialType = "INFERENCE" | "FINE_TUNE";
 
 /**
  * State of a trial -- once a trial is closed, its model is available for consumption
  */
-export enum TrialState {
-  OPEN = "OPEN",
-  CLOSED = "CLOSED",
-}
+export type TrialState = "OPEN" | "CLOSED";
 
 /**
  *
@@ -2257,22 +1591,10 @@ export interface Trial {
   modelId: string | null;
   /**
    *
-   * @type {Array<Comment>}
-   * @memberof Trial
-   */
-  comments: Array<Comment>;
-  /**
-   *
    * @type {JSONValue | null}
    * @memberof Trial
    */
   parameters: JSONValue | null;
-  /**
-   *
-   * @type {Array<TrialStep>}
-   * @memberof Trial
-   */
-  trialSteps: Array<TrialStep>;
   /**
    *
    * @type {?string}
@@ -2290,13 +1612,19 @@ export interface Trial {
    * @type {JSONValue | null}
    * @memberof Trial
    */
-  attributed: JSONValue | null;
+  attributes: JSONValue | null;
   /**
    *
    * @type {?string}
    * @memberof Trial
    */
   organizationId: string | null;
+  /**
+   *
+   * @type {Visibility}
+   * @memberof Trial
+   */
+  visibility: Visibility;
   /**
    *
    * @type {boolean}
@@ -2439,7 +1767,9 @@ export type CloneTrialResponse = Trial;
  * @type CreateTrialResponse
  * @export
  */
-export type CreateTrialResponse = Trial;
+export type CreateTrialResponse = Trial & {
+  experiment: Experiment;
+};
 
 /**
  * @type ForkTrialResponse
@@ -2451,15 +1781,22 @@ export type ForkTrialResponse = Trial;
  * @type ListTrialsResponse
  * @export
  */
-export type ListTrialsResponse = Array<
-  { models: Array<Trial> } & CommonListResponseData
->;
+export type ListTrialsResponse = {
+  trials: Array<Trial>;
+} & CommonListResponseData;
 
 /**
  * @type ReadTrialResponse
  * @export
  */
-export type ReadTrialResponse = Trial;
+export type ReadTrialResponse = Trial & {
+  comments: Array<Comment>;
+  experiment: Experiment;
+  members: Array<User>;
+  organization: Organization | null;
+  playgroundModel: Model | null;
+  steps: Array<TrialStep>;
+};
 
 /**
  * @type UpdateTrialResponse
@@ -2530,12 +1867,6 @@ export interface TrialStep {
    */
   metadata: JSONValue;
   /**
-   * Any uploads to storage that are referenced in the metrics data in some way
-   * @type {Array<Upload>}
-   * @memberof TrialStep
-   */
-  uploads: Array<Upload>;
-  /**
    * Parent step ID (always specified unless this is the first step)
    * @type {?string}
    * @memberof TrialStep
@@ -2549,82 +1880,8 @@ export interface TrialStep {
   nextStepIds: Array<string>;
   /**
    *
-   * @type {Array<Trial>}
-   * @memberof TrialStep
-   */
-  trials: Array<Trial>;
-  /**
-   * All human-in-the-loop feedback associated with this trial step
-   * @type {Array<TrialStepFeedback>}
-   * @memberof TrialStep
-   */
-  trialStepFeedback: Array<TrialStepFeedback>;
-  /**
-   *
-   * @type {Array<Comment>}
-   * @memberof TrialStep
-   */
-  comments: Array<Comment>;
-  /**
-   *
    * @type {JSONValue | null}
    * @memberof TrialStep
-   */
-  attributes: JSONValue | null;
-}
-
-/**
- * Represents a human-in-the-loop feedback for each trial step (e.g. upvoting an image created by the model)
- * @export
- * @interface TrialStepFeedback
- */
-export interface TrialStepFeedback {
-  /**
-   *
-   * @type {string}
-   * @memberof TrialStepFeedback
-   */
-  id: string;
-  /**
-   *
-   * @type {Date}
-   * @memberof TrialStepFeedback
-   */
-  createdAt: Date;
-  /**
-   *
-   * @type {Date}
-   * @memberof TrialStepFeedback
-   */
-  updatedAt: Date;
-  /**
-   *
-   * @type {string}
-   * @memberof TrialStepFeedback
-   */
-  trialId: string;
-  /**
-   *
-   * @type {string}
-   * @memberof TrialStepFeedback
-   */
-  trialStepId: string;
-  /**
-   * Feedback (e.g. upvote, downvote, etc.)
-   * @type {JSONValue}
-   * @memberof TrialStepFeedback
-   */
-  feedback: JSONValue;
-  /**
-   * Person giving the feedback
-   * @type {?string}
-   * @memberof TrialStepFeedback
-   */
-  userId: string | null;
-  /**
-   *
-   * @type {JSONValue | null}
-   * @memberof TrialStepFeedback
    */
   attributes: JSONValue | null;
 }
@@ -2635,12 +1892,6 @@ export interface TrialStepFeedback {
  * @interface TrialStepCreateDataCore
  */
 export interface TrialStepCreateDataCore {
-  /**
-   * The trial to add the step to
-   * @type {string}
-   * @memberof TrialStepCreateData
-   */
-  trialId: string;
   /**
    *
    * @type {JSONValue}
@@ -2783,6 +2034,12 @@ export interface Upload {
    * @memberof Upload
    */
   embeddingDataId: string | null;
+  /**
+   *
+   * @type {?string}
+   * @memberof Upload
+   */
+  datasetId: string | null;
 }
 
 type UploadAttachmentEntity = "model" | "trialstep";
@@ -2814,17 +2071,17 @@ export interface UploadAttachData {
  */
 export interface UploadCreateData {
   /**
-   * The entity type to attach the upload to
-   * @type {UploadAttachmentEntity}
-   * @memberof UploadCreateData
-   */
-  entity: UploadAttachmentEntity;
-  /**
-   * The id of the entity to attach the upload to
+   * The s3 url to upload the data to
    * @type {string}
    * @memberof UploadCreateData
    */
-  entityId: string;
+  url: string;
+  /**
+   * Metadata to set for the upload data
+   * @type {JSONValue}
+   * @memberof UploadCreateData
+   */
+  metadata: JSONValue;
 }
 
 /**
@@ -2907,12 +2164,6 @@ export interface Workspace {
   name: string;
   /**
    *
-   * @type {Array<Experiment>}
-   * @memberof Workspace
-   */
-  experiments: Array<Experiment>;
-  /**
-   *
    * @type {?string}
    * @memberof Workspace
    */
@@ -2971,16 +2222,14 @@ export type CreateWorkspaceResponse = {
  * @type ListWorkspacesResponse
  * @export
  */
-export type ListWorkspacesResponse = Array<
-  {
-    workspaces: Array<{
-      id: string;
-      name: string;
-      createdAt: Date;
-      updatedAt: Date;
-    }>;
-  } & CommonListResponseData
->;
+export type ListWorkspacesResponse = {
+  workspaces: Array<{
+    id: string;
+    name: string;
+    createdAt: Date;
+    updatedAt: Date;
+  }>;
+} & CommonListResponseData;
 
 /**
  * @type ReadWorkspaceResponse
@@ -3582,7 +2831,7 @@ export class LastMileAIApi {
   public async addOrganizationMember(
     id: string,
     email: string
-  ): Promise<{ status: string }> {
+  ): Promise<AddOrganizationMemberResponse> {
     const res = await axios.post(
       "orgs/members/add",
       { id, email },
