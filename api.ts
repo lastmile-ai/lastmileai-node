@@ -868,80 +868,6 @@ export enum Visibility {
 }
 
 /**
- *
- * @export
- * @interface Workspace
- */
-export interface Workspace {
-  /**
-   *
-   * @type {string}
-   * @memberof Workspace
-   */
-  id: string;
-  /**
-   *
-   * @type {string}
-   * @memberof Workspace
-   */
-  createdAt: string;
-  /**
-   *
-   * @type {string}
-   * @memberof Workspace
-   */
-  updatedAt: string;
-  /**
-   *
-   * @type {string}
-   * @memberof Workspace
-   */
-  creatorId: string;
-  /**
-   *
-   * @type {?string}
-   * @memberof Workspace
-   */
-  organizationId: string | null;
-  /**
-   *
-   * @type {Visibility}
-   * @memberof Workspace
-   */
-  visibility: Visibility;
-  /**
-   *
-   * @type {string}
-   * @memberof Workspace
-   */
-  name: string;
-  /**
-   *
-   * @type {Array<Experiment>}
-   * @memberof Workspace
-   */
-  experiments: Array<Experiment>;
-  /**
-   *
-   * @type {?string}
-   * @memberof Workspace
-   */
-  primaryExperimentId: string | null;
-  /**
-   *
-   * @type {boolean}
-   * @memberof Workspace
-   */
-  active: string;
-  /**
-   *
-   * @type {?JSONValue}
-   * @memberof Workspace
-   */
-  attributes: JSONValue | null;
-}
-
-/**
  * DATASET TYPES
  */
 
@@ -2902,20 +2828,165 @@ export type AttachUploadResponse = Upload;
  * @export
  */
 export type CreateUploadResponse = {
-  id: string,
-  url: string,
-}
+  id: string;
+  url: string;
+};
 
 /**
  * @type UploadPolicyResponse
  * @export
  */
 export type UploadPolicyResponse = {
-  s3Policy: string,
-  s3Signature: string,
-  AWSAccessKeyId: string,
-  userId: string,
+  s3Policy: string;
+  s3Signature: string;
+  AWSAccessKeyId: string;
+  userId: string;
+};
+
+/**
+ * WORKSPACE TYPES
+ */
+
+/**
+ *
+ * @export
+ * @interface Workspace
+ */
+export interface Workspace {
+  /**
+   *
+   * @type {string}
+   * @memberof Workspace
+   */
+  id: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Workspace
+   */
+  createdAt: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Workspace
+   */
+  updatedAt: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Workspace
+   */
+  creatorId: string;
+  /**
+   *
+   * @type {?string}
+   * @memberof Workspace
+   */
+  organizationId: string | null;
+  /**
+   *
+   * @type {Visibility}
+   * @memberof Workspace
+   */
+  visibility: Visibility;
+  /**
+   *
+   * @type {string}
+   * @memberof Workspace
+   */
+  name: string;
+  /**
+   *
+   * @type {Array<Experiment>}
+   * @memberof Workspace
+   */
+  experiments: Array<Experiment>;
+  /**
+   *
+   * @type {?string}
+   * @memberof Workspace
+   */
+  primaryExperimentId: string | null;
+  /**
+   *
+   * @type {boolean}
+   * @memberof Workspace
+   */
+  active: string;
+  /**
+   *
+   * @type {?JSONValue}
+   * @memberof Workspace
+   */
+  attributes: JSONValue | null;
 }
+
+/**
+ *
+ * @export
+ * @interface WorkspaceCreateData
+ */
+export interface WorkspaceCreateData {
+  /**
+   *
+   * @type {string}
+   * @memberof WorkspaceCreateData
+   */
+  name: string;
+}
+
+/**
+ *
+ * @export
+ * @interface WorkspaceListQueryData
+ */
+export interface WorkspaceListQueryData extends CommonListQueryDataWithSearch {}
+
+/**
+ * @type WorkspaceUpdateData
+ * @export
+ */
+export type WorkspaceUpdateData = WorkspaceCreateData;
+
+/**
+ * @type CreateWorkspaceResponse
+ * @export
+ */
+export type CreateWorkspaceResponse = {
+  id: string;
+  name: string;
+};
+
+/**
+ * @type ListWorkspacesResponse
+ * @export
+ */
+export type ListWorkspacesResponse = Array<
+  {
+    workspaces: Array<{
+      id: string;
+      name: string;
+      createdAt: Date;
+      updatedAt: Date;
+    }>;
+  } & CommonListResponseData
+>;
+
+/**
+ * @type ReadWorkspaceResponse
+ * @export
+ */
+export type ReadWorkspaceResponse = Workspace & {
+  organization: Organization | null;
+  members: Array<User>;
+  experiments: Array<Experiment>;
+};
+
+/**
+ * @type UpdateWorkspaceResponse
+ * @export
+ */
+export type UpdateWorkspaceResponse = Workspace;
 
 /**
  * API Class
@@ -3882,6 +3953,89 @@ export class LastMileAIApi {
     const res = await axios.get("upload/policy", {
       ...this.configuration.defaultAxiosConfig,
     });
+    return res.data;
+  }
+
+  /**
+   * WORKSPACES
+   */
+
+  /**
+   *
+   * @summary Creates and returns a new Workspace
+   * @param {WorkspaceCreateData} data Data to set in the created Workspace
+   */
+  public async createWorkspace(
+    data: WorkspaceCreateData
+  ): Promise<CreateWorkspaceResponse> {
+    const res = await axios.post(
+      "workspaces/create",
+      data,
+      this.configuration.defaultAxiosConfig
+    );
+    return res.data;
+  }
+
+  /**
+   *
+   * @summary Deletes a specified Workspace
+   * @param {string} id The id of the Workspace to delete
+   */
+  public async deleteWorkspace(id: string): Promise<{ status: string }> {
+    const res = await axios.delete("workspaces/delete", {
+      ...this.configuration.defaultAxiosConfig,
+      data: { id },
+    });
+    return res.data;
+  }
+
+  /**
+   *
+   * @summary Returns a list of Workspaces. Supports pagination and filtering by search string
+   * @param {WorkspaceListQueryData} [queryData] Query / pagination filters
+   */
+  public async listWorkspaces(
+    queryData?: WorkspaceListQueryData
+  ): Promise<ListWorkspacesResponse> {
+    const res = await axios.get("workspaces/list", {
+      ...this.configuration.defaultAxiosConfig,
+      params: {
+        cursor: queryData?.cursor,
+        pageSize: queryData?.pageSize?.toString(),
+        search: queryData?.search,
+      },
+    });
+    return res.data;
+  }
+
+  /**
+   *
+   * @summary Reads a Workspace
+   * @param {string} id The id of the Workspace to read
+   */
+  public async readWorkspace(id: string): Promise<ReadWorkspaceResponse> {
+    const res = await axios.get("workspaces/read", {
+      ...this.configuration.defaultAxiosConfig,
+      params: { id },
+    });
+    return res.data;
+  }
+
+  /**
+   *
+   * @summary Update the data associated with a Workspace
+   * @param {string} id The id of the Workspace to update
+   * @param {WorkspaceUpdateData} data Data to update for the Workspace
+   */
+  public async updateWorkspace(
+    id: string,
+    data: WorkspaceUpdateData
+  ): Promise<UpdateWorkspaceResponse> {
+    const res = await axios.put(
+      "workspaces/update",
+      { ...data, id },
+      this.configuration.defaultAxiosConfig
+    );
     return res.data;
   }
 }
