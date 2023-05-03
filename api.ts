@@ -1268,6 +1268,16 @@ export type ListEmbeddingCollectionsResponse = Array<
  */
 export type ReadEmbeddingCollectionResponse = EmbeddingCollection;
 
+export type EmbeddingCollectionStatus = "PROCESSING" | "READY" | "ERROR";
+
+/**
+ * @type EmbeddingCollectionStatusResponse
+ * @export
+ */
+export type EmbeddingCollectionStatusResponse = {
+  status: EmbeddingCollectionStatus;
+};
+
 /**
  * @type UpdateEmbeddingCollectionResponse
  * @export
@@ -3181,6 +3191,21 @@ export class LastMileAIApi {
     });
     return res.data;
   }
+
+  /**
+   *
+   * @summary Returns the status of an EmbeddingCollection
+   * @param {string} id The id of the EmbeddingCollection to obtain status of
+   */
+    public async embeddingCollectionStatus(
+      id: string
+    ): Promise<EmbeddingCollectionStatusResponse> {
+      const res = await axios.get("embeddings/status", {
+        ...this.configuration.defaultAxiosConfig,
+        params: { id },
+      });
+      return res.data;
+    }
 
   /**
    *
