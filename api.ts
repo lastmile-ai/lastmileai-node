@@ -26,16 +26,16 @@ export interface Comment {
   id: string;
   /**
    *
-   * @type {Date}
+   * @type {string}
    * @memberof Comment
    */
-  createdAt: Date;
+  createdAt: string;
   /**
    *
-   * @type {Date}
+   * @type {string}
    * @memberof Comment
    */
-  updatedAt: Date;
+  updatedAt: string;
   /**
    *
    * @type {?string}
@@ -131,16 +131,16 @@ export type CommonListResponseData = {
 export interface RoleByOrganization {
   /**
    *
-   * @type {Date}
+   * @type {string}
    * @memberof RoleByOrganization
    */
-  createdAt: Date;
+  createdAt: string;
   /**
    *
-   * @type {Date}
+   * @type {string}
    * @memberof RoleByOrganization
    */
-  updatedAt: Date;
+  updatedAt: string;
   /**
    *
    * @type {UserRole}
@@ -175,16 +175,16 @@ export interface User {
   id: string;
   /**
    *
-   * @type {Date}
+   * @type {string}
    * @memberof User
    */
-  createdAt: Date;
+  createdAt: string;
   /**
    *
-   * @type {Date}
+   * @type {string}
    * @memberof User
    */
-  updatedAt: Date;
+  updatedAt: string;
   /**
    *
    * @type {?string}
@@ -263,16 +263,16 @@ export interface Dataset {
   id: string;
   /**
    *
-   * @type {Date}
+   * @type {string}
    * @memberof Dataset
    */
-  createdAt: Date;
+  createdAt: string;
   /**
    *
-   * @type {Date}
+   * @type {string}
    * @memberof Dataset
    */
-  updatedAt: Date;
+  updatedAt: string;
   /**
    *
    * @type {string}
@@ -435,16 +435,16 @@ export interface EmbeddingCollection {
   id: string;
   /**
    *
-   * @type {Date}
+   * @type {string}
    * @memberof EmbeddingCollection
    */
-  createdAt: Date;
+  createdAt: string;
   /**
    *
-   * @type {Date}
+   * @type {string}
    * @memberof EmbeddingCollection
    */
-  updatedAt: Date;
+  updatedAt: string;
   /**
    *
    * @type {JSONValue}
@@ -539,16 +539,16 @@ export interface EmbeddingData {
   id: string;
   /**
    *
-   * @type {Date}
+   * @type {string}
    * @memberof EmbeddingData
    */
-  createdAt: Date;
+  createdAt: string;
   /**
    *
-   * @type {Date}
+   * @type {string}
    * @memberof EmbeddingData
    */
-  updatedAt: Date;
+  updatedAt: string;
   /**
    *
    * @type {string}
@@ -668,16 +668,16 @@ export interface Experiment {
   id: string;
   /**
    *
-   * @type {Date}
+   * @type {string}
    * @memberof Experiment
    */
-  createdAt: Date;
+  createdAt: string;
   /**
    *
-   * @type {Date}
+   * @type {string}
    * @memberof Experiment
    */
-  updatedAt: Date;
+  updatedAt: string;
   /**
    *
    * @type {string}
@@ -853,16 +853,16 @@ export interface Model {
   id: string;
   /**
    *
-   * @type {Date}
+   * @type {string}
    * @memberof Model
    */
-  createdAt: Date;
+  createdAt: string;
   /**
    *
-   * @type {Date}
+   * @type {string}
    * @memberof Model
    */
-  updatedAt: Date;
+  updatedAt: string;
   /**
    *
    * @type {string}
@@ -1063,16 +1063,16 @@ export interface Notification {
   id: string;
   /**
    *
-   * @type {Date}
+   * @type {string}
    * @memberof Notification
    */
-  createdAt: Date;
+  createdAt: string;
   /**
    *
-   * @type {Date}
+   * @type {string}
    * @memberof Notification
    */
-  updatedAt: Date;
+  updatedAt: string;
   /**
    *
    * @type {string}
@@ -1133,16 +1133,16 @@ export interface Organization {
   id: string;
   /**
    *
-   * @type {Date}
+   * @type {string}
    * @memberof Organization
    */
-  createdAt: Date;
+  createdAt: string;
   /**
    *
-   * @type {Date}
+   * @type {string}
    * @memberof Organization
    */
-  updatedAt: Date;
+  updatedAt: string;
   /**
    *
    * @type {string}
@@ -1245,16 +1245,16 @@ export type UpdateOrganizationResponse = Organization;
 export interface InvitedMember {
   /**
    *
-   * @type {Date}
+   * @type {string}
    * @memberof InvitedMember
    */
-  createdAt: Date;
+  createdAt: string;
   /**
    *
-   * @type {Date}
+   * @type {string}
    * @memberof InvitedMember
    */
-  updatedAt: Date;
+  updatedAt: string;
   /**
    *
    * @type {string}
@@ -1305,16 +1305,16 @@ export interface Review {
   id: string;
   /**
    *
-   * @type {Date}
+   * @type {string}
    * @memberof Review
    */
-  createdAt: Date;
+  createdAt: string;
   /**
    *
-   * @type {Date}
+   * @type {string}
    * @memberof Review
    */
-  updatedAt: Date;
+  updatedAt: string;
   /**
    *
    * @type {string}
@@ -1398,22 +1398,22 @@ export interface SanitizedToken {
   id: string;
   /**
    *
-   * @type {Date}
+   * @type {string}
    * @memberof SanitizedToken
    */
-  createdAt: Date;
+  createdAt: string;
   /**
    *
-   * @type {Date}
+   * @type {string}
    * @memberof SanitizedToken
    */
-  name: Date;
+  name: string;
   /**
    *
-   * @type {?Date}
+   * @type {?string}
    * @memberof SanitizedToken
    */
-  lastUsed?: Date | null;
+  lastUsed?: string | null;
 }
 
 /**
@@ -1424,10 +1424,10 @@ export interface SanitizedToken {
 export interface Token extends SanitizedToken {
   /**
    *
-   * @type {Date}
+   * @type {string}
    * @memberof Token
    */
-  updatedAt: Date;
+  updatedAt: string;
   /**
    *
    * @type {string}
@@ -1548,16 +1548,16 @@ export interface Trial {
   id: string;
   /**
    *
-   * @type {Date}
+   * @type {string}
    * @memberof Trial
    */
-  createdAt: Date;
+  createdAt: string;
   /**
    *
-   * @type {Date}
+   * @type {Dastringte}
    * @memberof Trial
    */
-  updatedAt: Date;
+  updatedAt: string;
   /**
    *
    * @type {string}
@@ -1843,16 +1843,16 @@ export interface TrialStep {
   id: string;
   /**
    *
-   * @type {Date}
+   * @type {string}
    * @memberof TrialStep
    */
-  createdAt: Date;
+  createdAt: string;
   /**
    *
-   * @type {Date}
+   * @type {string}
    * @memberof TrialStep
    */
-  updatedAt: Date;
+  updatedAt: string;
   /**
    *
    * @type {string}
@@ -1987,16 +1987,16 @@ export interface Upload {
   id: string;
   /**
    *
-   * @type {Date}
+   * @type {string}
    * @memberof Upload
    */
-  createdAt: Date;
+  createdAt: string;
   /**
    *
-   * @type {Date}
+   * @type {string}
    * @memberof Upload
    */
-  updatedAt: Date;
+  updatedAt: string;
   /**
    *
    * @type {string}
@@ -2139,16 +2139,16 @@ export interface Workspace {
   id: string;
   /**
    *
-   * @type {Date}
+   * @type {string}
    * @memberof Workspace
    */
-  createdAt: Date;
+  createdAt: string;
   /**
    *
-   * @type {Date}
+   * @type {string}
    * @memberof Workspace
    */
-  updatedAt: Date;
+  updatedAt: string;
   /**
    *
    * @type {string}
@@ -2237,8 +2237,8 @@ export type ListWorkspacesResponse = {
   workspaces: Array<{
     id: string;
     name: string;
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt: string;
+    updatedAt: string;
   }>;
 } & CommonListResponseData;
 

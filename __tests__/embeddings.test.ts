@@ -23,6 +23,6 @@ describe('Embeddings API Methods', () => {
         expect(embeddingCollection.createdAt).not.toBeNull();
         expect(embeddingCollection.updatedAt).not.toBeNull();
         expect(embeddingCollection.error).toBeNull();
-        expect(embeddingCollection.visibility).toBe(Visibility.PRIVATE);
+        expect(embeddingCollection.visibility).toBe(Visibility.MEMBER);
     });
 });
