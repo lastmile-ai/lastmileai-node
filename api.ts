@@ -642,80 +642,6 @@ export interface Tag {
 /**
  *
  * @export
- * @interface Upload
- */
-export interface Upload {
-  /**
-   *
-   * @type {string}
-   * @memberof Upload
-   */
-  id: string;
-  /**
-   *
-   * @type {string}
-   * @memberof Upload
-   */
-  createdAt: string;
-  /**
-   *
-   * @type {string}
-   * @memberof Upload
-   */
-  updatedAt: string;
-  /**
-   *
-   * @type {string}
-   * @memberof Upload
-   */
-  url: string;
-  /**
-   *
-   * @type {JSONValue}
-   * @memberof Upload
-   */
-  metadata: JSONValue;
-  /**
-   *
-   * @type {string}
-   * @memberof Upload
-   */
-  modelId: string;
-  /**
-   *
-   * @type {string}
-   * @memberof Upload
-   */
-  creatorId: string;
-  /**
-   *
-   * @type {boolean}
-   * @memberof Upload
-   */
-  active: boolean;
-  /**
-   *
-   * @type {JSONValue | null}
-   * @memberof Upload
-   */
-  attributes: JSONValue | null;
-  /**
-   *
-   * @type {?string}
-   * @memberof Upload
-   */
-  trialStepId: string | null;
-  /**
-   *
-   * @type {?string}
-   * @memberof Upload
-   */
-  embeddingDataId: string | null;
-}
-
-/**
- *
- * @export
  * @interface User
  */
 export interface User {
@@ -2846,6 +2772,152 @@ export type CreateTrialStepResponse = TrialStep;
 export type UpdateTrialStepResponse = TrialStep;
 
 /**
+ * UPLOAD TYPES
+ */
+
+/**
+ *
+ * @export
+ * @interface Upload
+ */
+export interface Upload {
+  /**
+   *
+   * @type {string}
+   * @memberof Upload
+   */
+  id: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Upload
+   */
+  createdAt: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Upload
+   */
+  updatedAt: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Upload
+   */
+  url: string;
+  /**
+   *
+   * @type {JSONValue}
+   * @memberof Upload
+   */
+  metadata: JSONValue;
+  /**
+   *
+   * @type {string}
+   * @memberof Upload
+   */
+  modelId: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Upload
+   */
+  creatorId: string;
+  /**
+   *
+   * @type {boolean}
+   * @memberof Upload
+   */
+  active: boolean;
+  /**
+   *
+   * @type {JSONValue | null}
+   * @memberof Upload
+   */
+  attributes: JSONValue | null;
+  /**
+   *
+   * @type {?string}
+   * @memberof Upload
+   */
+  trialStepId: string | null;
+  /**
+   *
+   * @type {?string}
+   * @memberof Upload
+   */
+  embeddingDataId: string | null;
+}
+
+type UploadAttachmentEntity = "model" | "trialstep";
+
+/**
+ *
+ * @export
+ * @interface UploadAttachData
+ */
+export interface UploadAttachData {
+  /**
+   * The entity type to attach the upload to
+   * @type {UploadAttachmentEntity}
+   * @memberof UploadAttachData
+   */
+  entity: UploadAttachmentEntity;
+  /**
+   * The id of the entity to attach the upload to
+   * @type {string}
+   * @memberof UploadAttachData
+   */
+  entityId: string;
+}
+
+/**
+ *
+ * @export
+ * @interface UploadCreateData
+ */
+export interface UploadCreateData {
+  /**
+   * The entity type to attach the upload to
+   * @type {UploadAttachmentEntity}
+   * @memberof UploadCreateData
+   */
+  entity: UploadAttachmentEntity;
+  /**
+   * The id of the entity to attach the upload to
+   * @type {string}
+   * @memberof UploadCreateData
+   */
+  entityId: string;
+}
+
+/**
+ * @type AttachUploadResponse
+ * @export
+ */
+export type AttachUploadResponse = Upload;
+
+/**
+ * @type CreateUploadResponse
+ * @export
+ */
+export type CreateUploadResponse = {
+  id: string,
+  url: string,
+}
+
+/**
+ * @type UploadPolicyResponse
+ * @export
+ */
+export type UploadPolicyResponse = {
+  s3Policy: string,
+  s3Signature: string,
+  AWSAccessKeyId: string,
+  userId: string,
+}
+
+/**
  * API Class
  */
 
@@ -3761,6 +3833,55 @@ export class LastMileAIApi {
       { ...data, id },
       this.configuration.defaultAxiosConfig
     );
+    return res.data;
+  }
+
+  /**
+   * UPLOADS
+   */
+
+  /**
+   *
+   * @summary Attaches an Upload to an entity
+   * @param {string} id The id of the Upload to attach
+   * @param {UploadAttachData} data Specifies the entity to attach the Upload to
+   */
+  public async attachUpload(
+    id: string,
+    data: UploadAttachData
+  ): Promise<AttachUploadResponse> {
+    const res = await axios.put(
+      "upload/attach",
+      { ...data, id },
+      this.configuration.defaultAxiosConfig
+    );
+    return res.data;
+  }
+
+  /**
+   *
+   * @summary Creates and returns a new Upload
+   * @param {UploadCreateData} data Data to set in the created Upload
+   */
+  public async createUpload(
+    data: UploadCreateData
+  ): Promise<CreateUploadResponse> {
+    const res = await axios.post(
+      "upload/create",
+      data,
+      this.configuration.defaultAxiosConfig
+    );
+    return res.data;
+  }
+
+  /**
+   *
+   * @summary Returns an upload policy to client to upload to S3. Part of upload flow.
+   */
+  public async uploadPolicy(): Promise<UploadPolicyResponse> {
+    const res = await axios.get("upload/policy", {
+      ...this.configuration.defaultAxiosConfig,
+    });
     return res.data;
   }
 }
