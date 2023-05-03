@@ -434,74 +434,6 @@ export interface Profile {
 /**
  *
  * @export
- * @interface Review
- */
-export interface Review {
-  /**
-   *
-   * @type {string}
-   * @memberof Review
-   */
-  id: string;
-  /**
-   *
-   * @type {string}
-   * @memberof Review
-   */
-  createdAt: string;
-  /**
-   *
-   * @type {string}
-   * @memberof Review
-   */
-  updatedAt: string;
-  /**
-   *
-   * @type {string}
-   * @memberof Review
-   */
-  creatorId: string;
-  /**
-   *
-   * @type {?string}
-   * @memberof Review
-   */
-  organizationId: string | null;
-  /**
-   *
-   * @type {Visibility}
-   * @memberof Review
-   */
-  visibility: Visibility;
-  /**
-   *
-   * @type {boolean}
-   * @memberof Review
-   */
-  active: string;
-  /**
-   *
-   * @type {string}
-   * @memberof Review
-   */
-  trial1Id: string;
-  /**
-   *
-   * @type {string}
-   * @memberof Review
-   */
-  trial2Id: string;
-  /**
-   *
-   * @type {Array<Comment>}
-   * @memberof Review
-   */
-  comments: Array<Comment>;
-}
-
-/**
- *
- * @export
  * @interface RoleByOrganization
  */
 export interface RoleByOrganization {
@@ -2124,6 +2056,236 @@ export type ReadOrganizationResponse = Organization;
 export type UpdateOrganizationResponse = Organization;
 
 /**
+ * REVIEW TYPES
+ */
+
+/**
+ *
+ * @export
+ * @interface Review
+ */
+export interface Review {
+  /**
+   *
+   * @type {string}
+   * @memberof Review
+   */
+  id: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Review
+   */
+  createdAt: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Review
+   */
+  updatedAt: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Review
+   */
+  creatorId: string;
+  /**
+   *
+   * @type {?string}
+   * @memberof Review
+   */
+  organizationId: string | null;
+  /**
+   *
+   * @type {Visibility}
+   * @memberof Review
+   */
+  visibility: Visibility;
+  /**
+   *
+   * @type {boolean}
+   * @memberof Review
+   */
+  active: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Review
+   */
+  trial1Id: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Review
+   */
+  trial2Id: string;
+  /**
+   *
+   * @type {Array<Comment>}
+   * @memberof Review
+   */
+  comments: Array<Comment>;
+}
+
+/**
+ *
+ * @export
+ * @interface ReviewListQueryData
+ */
+export interface ReviewListQueryData extends CommonListQueryData {}
+
+/**
+ * @type ListReviewsResponse
+ * @export
+ */
+export type ListReviewsResponse = Array<
+  { reviews: Array<Review> } & CommonListResponseData
+>;
+
+/**
+ * @type ReadReviewResponse
+ * @export
+ */
+export type ReadReviewResponse = Review;
+
+/**
+ * PRIVATE TOKEN TYPES
+ */
+
+/**
+ *
+ * @export
+ * @interface SanitizedToken
+ */
+export interface SanitizedToken {
+  /**
+   *
+   * @type {string}
+   * @memberof SanitizedToken
+   */
+  id: string;
+  /**
+   *
+   * @type {string}
+   * @memberof SanitizedToken
+   */
+  createdAt: string;
+  /**
+   *
+   * @type {string}
+   * @memberof SanitizedToken
+   */
+  name: string;
+  /**
+   *
+   * @type {?string}
+   * @memberof SanitizedToken
+   */
+  lastUsed?: string | null;
+}
+
+/**
+ *
+ * @export
+ * @interface Token
+ */
+export interface Token extends SanitizedToken {
+  /**
+   *
+   * @type {string}
+   * @memberof Token
+   */
+  updatedAt: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Token
+   */
+  token: string;
+}
+
+/**
+ *
+ * @export
+ * @interface TokenCreateData
+ */
+export interface TokenCreateData {
+  /**
+   *
+   * @type {string}
+   * @memberof TokenCreateData
+   */
+  name: string;
+}
+
+/**
+ *
+ * @export
+ * @interface TokenListQueryData
+ */
+export interface TokenListQueryData extends CommonListQueryData {}
+
+/**
+ * @type CreateTokenResponse
+ * @export
+ */
+export type CreateTokenResponse = Token;
+
+/**
+ * @type ListTokensResponse
+ * @export
+ */
+export type ListTokensResponse = Array<
+  { apiTokens: Array<SanitizedToken> } & CommonListResponseData
+>;
+
+/**
+ * PUBLIC TOKEN TYPES
+ */
+
+/**
+ *
+ * @export
+ * @interface PublicToken
+ */
+export interface PublicToken extends Token {
+  /**
+   * Defines the scopes of API access allowed to this token
+   * @type {JSONValue}
+   * @memberof PublicToken
+   */
+  scopes: JSONValue;
+}
+
+/**
+ *
+ * @export
+ * @interface PublicTokenCreateData
+ */
+export interface PublicTokenCreateData extends TokenCreateData {};
+
+/**
+ *
+ * @export
+ * @interface PublicTokenListQueryData
+ */
+export interface PublicTokenListQueryData extends CommonListQueryData {}
+
+/**
+ * @type CreatePublicTokenResponse
+ * @export
+ */
+export type CreatePublicTokenResponse = PublicToken;
+
+/**
+ * @type ListPublicTokensResponse
+ * @export
+ */
+export type ListPublicTokensResponse = Array<
+  { apiTokens: Array<SanitizedToken> } & CommonListResponseData
+>;
+
+/**
  * TRIAL TYPES
  */
 
@@ -2949,7 +3111,7 @@ export class LastMileAIApi {
   /**
    *
    * @summary Returns a list of Organizations. Supports pagination and filtering by name
-   * @param {OrganizationListQueryDAta} [queryData] Query / pagination filters
+   * @param {OrganizationListQueryData} [queryData] Query / pagination filters
    */
   public async listOrganizations(
     queryData?: OrganizationListQueryData
@@ -3085,6 +3247,146 @@ export class LastMileAIApi {
       { id, email },
       this.configuration.defaultAxiosConfig
     );
+    return res.data;
+  }
+
+  /**
+   * REVIEWS
+   */
+
+  /**
+   *
+   * @summary Returns a list of Reviews. Supports pagination and filtering by name
+   * @param {ReviewListQueryData} [queryData] Query / pagination filters
+   */
+  public async listReviews(
+    queryData?: ReviewListQueryData
+  ): Promise<ListReviewsResponse> {
+    const res = await axios.get("reviews/list", {
+      ...this.configuration.defaultAxiosConfig,
+      params: {
+        cursor: queryData?.cursor,
+        pageSize: queryData?.pageSize?.toString(),
+        search: queryData?.name,
+      },
+    });
+    return res.data;
+  }
+
+  /**
+   *
+   * @summary Reads a Review
+   * @param {string} id The id of the Review to read
+   */
+  public async readReview(id: string): Promise<ReadReviewResponse> {
+    const res = await axios.get("reviews/read", {
+      ...this.configuration.defaultAxiosConfig,
+      params: { id },
+    });
+    return res.data;
+  }
+
+  /**
+   * PRIVATE TOKENS
+   */
+
+  /**
+   *
+   * @summary Creates and returns a new private Token
+   * @param {TokenCreateData} data Data to set in the created Token
+   */
+  public async createToken(
+    data: TokenCreateData
+  ): Promise<CreateTokenResponse> {
+    const res = await axios.post(
+      "tokens/create",
+      data,
+      this.configuration.defaultAxiosConfig
+    );
+    return res.data;
+  }
+
+  /**
+   *
+   * @summary Deletes a specified private Token
+   * @param {string} id The id of the Token to delete
+   */
+  public async deleteToken(id: string): Promise<{ status: string }> {
+    const res = await axios.delete("tokens/delete", {
+      ...this.configuration.defaultAxiosConfig,
+      data: { id },
+    });
+    return res.data;
+  }
+
+  /**
+   *
+   * @summary Returns a list of private Tokens. Supports pagination and filtering by name
+   * @param {TokenListQueryData} [queryData] Query / pagination filters
+   */
+  public async listTokens(
+    queryData?: TokenListQueryData
+  ): Promise<ListTokensResponse> {
+    const res = await axios.get("tokens/list", {
+      ...this.configuration.defaultAxiosConfig,
+      params: {
+        cursor: queryData?.cursor,
+        pageSize: queryData?.pageSize?.toString(),
+        search: queryData?.name,
+      },
+    });
+    return res.data;
+  }
+
+  /**
+   * PUBLIC TOKENS
+   */
+
+  /**
+   *
+   * @summary Creates and returns a new Public Token
+   * @param {TokenCreateData} data Data to set in the created Token
+   */
+  public async createPublicToken(
+    data: PublicTokenCreateData
+  ): Promise<CreatePublicTokenResponse> {
+    const res = await axios.post(
+      "tokens/public/create",
+      data,
+      this.configuration.defaultAxiosConfig
+    );
+    return res.data;
+  }
+
+  /**
+   *
+   * @summary Deletes a specified Public Token
+   * @param {string} id The id of the Token to delete
+   */
+  public async deletePublicToken(id: string): Promise<{ status: string }> {
+    const res = await axios.delete("tokens/public/delete", {
+      ...this.configuration.defaultAxiosConfig,
+      data: { id },
+    });
+    return res.data;
+  }
+
+  /**
+   *
+   * @summary Returns a list of Public Tokens. Supports pagination and filtering by name
+   * @param {PublicTokenListQueryData} [queryData] Query / pagination filters
+   */
+  public async listPublicTokens(
+    queryData?: PublicTokenListQueryData
+  ): Promise<ListPublicTokensResponse> {
+    const res = await axios.get("tokens/public/list", {
+      ...this.configuration.defaultAxiosConfig,
+      params: {
+        cursor: queryData?.cursor,
+        pageSize: queryData?.pageSize?.toString(),
+        search: queryData?.name,
+      },
+    });
     return res.data;
   }
 
