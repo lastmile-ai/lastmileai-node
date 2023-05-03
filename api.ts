@@ -264,12 +264,20 @@ export interface CommonListQueryData {
    * @memberof CommonListQueryData
    */
   pageSize?: number;
+}
+
+/**
+ *
+ * @export
+ * @interface CommonListQueryDataWithSearch
+ */
+export interface CommonListQueryDataWithSearch extends CommonListQueryData {
   /**
    *
    * @type {string}
-   * @memberof CommonListQueryData
+   * @memberof CommonListQueryDataWithSearch
    */
-  name?: string;
+  search?: string;
 }
 
 /**
@@ -1167,7 +1175,7 @@ export interface DatasetCreateData {
  * @export
  * @interface DatasetListQueryData
  */
-export interface DatasetListQueryData extends CommonListQueryData {}
+export interface DatasetListQueryData extends CommonListQueryDataWithSearch {}
 
 /**
  * @type DatasetUpdateData
@@ -1372,7 +1380,15 @@ export interface EmbeddingCollectionCreateData {
  * @export
  * @interface EmbeddingCollectionListQueryData
  */
-export interface EmbeddingCollectionListQueryData extends CommonListQueryData {}
+export interface EmbeddingCollectionListQueryData
+  extends CommonListQueryDataWithSearch {
+  /**
+   * If true, only return embedding collections that are ready
+   * @type {boolean}
+   * @memberof EmbeddingCollectionListQueryData
+   */
+  ready?: boolean;
+}
 
 /**
  * @type EmbeddingCollectionUpdateData
@@ -1551,7 +1567,7 @@ export interface ExperimentCreateData {
  * @export
  * @interface ExperimentListQueryData
  */
-export interface ExperimentListQueryData extends CommonListQueryData {
+export interface ExperimentListQueryData extends CommonListQueryDataWithSearch {
   /**
    *
    * @type {string}
@@ -1773,7 +1789,14 @@ export interface ModelCreateData {
  * @export
  * @interface ModelListQueryData
  */
-export interface ModelListQueryData extends CommonListQueryData {}
+export interface ModelListQueryData extends CommonListQueryDataWithSearch {
+  /**
+   * If true, only return models that are promoted
+   * @type {boolean}
+   * @memberof ModelListQueryData
+   */
+  promoted?: boolean;
+}
 
 /**
  * @type ModelUpdateData
@@ -1878,7 +1901,8 @@ export interface Notification {
  * @export
  * @interface NotificationListQueryData
  */
-export interface NotificationListQueryData extends CommonListQueryData {}
+export interface NotificationListQueryData
+  extends CommonListQueryDataWithSearch {}
 
 /**
  * @type ListNotificationsResponse
@@ -2021,7 +2045,8 @@ export interface OrganizationCreateData {
  * @export
  * @interface OrganizationListQueryData
  */
-export interface OrganizationListQueryData extends CommonListQueryData {}
+export interface OrganizationListQueryData
+  extends CommonListQueryDataWithSearch {}
 
 /**
  * @type OrganizationUpdateData
@@ -2132,7 +2157,7 @@ export interface Review {
  * @export
  * @interface ReviewListQueryData
  */
-export interface ReviewListQueryData extends CommonListQueryData {}
+export interface ReviewListQueryData extends CommonListQueryDataWithSearch {}
 
 /**
  * @type ListReviewsResponse
@@ -2262,7 +2287,7 @@ export interface PublicToken extends Token {
  * @export
  * @interface PublicTokenCreateData
  */
-export interface PublicTokenCreateData extends TokenCreateData {};
+export interface PublicTokenCreateData extends TokenCreateData {}
 
 /**
  *
@@ -2431,6 +2456,160 @@ export interface Trial {
 }
 
 /**
+ *
+ * @export
+ * @interface TrialCloneData
+ */
+export interface TrialCloneData {
+  /**
+   * The id of the trial to clone
+   * @type {string}
+   * @memberof TrialCloneData
+   */
+  trialId: string;
+  /**
+   * The id of the trial step to clone up to.
+   * If unspecified, we'll clone everything up to the latest step in the specified trial
+   * @type {string}
+   * @memberof TrialCloneData
+   */
+  trialStepId?: string;
+  /**
+   * The name for the newly-cloned trial
+   * @type {string}
+   * @memberof TrialCloneData
+   */
+  cloneName?: string;
+}
+
+/**
+ *
+ * @export
+ * @interface TrialCreateData
+ */
+export interface TrialCreateData {
+  /**
+   *
+   * @type {string}
+   * @memberof TrialCreateData
+   */
+  name?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof TrialCreateData
+   */
+  experimentId?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof TrialCreateData
+   */
+  modelId?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof TrialCreateData
+   */
+  steps?: Array<TrialStepCreateDataCore>;
+  /**
+   *
+   * @type {JSONValue}
+   * @memberof TrialCreateData
+   */
+  parameters?: JSONValue;
+}
+
+/**
+ *
+ * @export
+ * @interface TrialForkData
+ */
+export interface TrialForkData {
+  /**
+   * The id of the trial to fork
+   * @type {string}
+   * @memberof TrialForkData
+   */
+  trialId: string;
+  /**
+   * The id of the trial step to fork up to.
+   * If unspecified, we'll fork everything up to the latest step in the specified trial
+   * @type {string}
+   * @memberof TrialForkData
+   */
+  trialStepId?: string;
+  /**
+   * The name for the newly-forked trial
+   * @type {string}
+   * @memberof TrialForkData
+   */
+  forkName?: string;
+}
+
+/**
+ *
+ * @export
+ * @interface TrialListQueryData
+ */
+export interface TrialListQueryData extends CommonListQueryDataWithSearch {
+  /**
+   *
+   * @type {boolean}
+   * @memberof TrialListQueryData
+   */
+  experimentId?: boolean;
+}
+
+/**
+ * @type TrialUpdateData
+ * @export
+ */
+export type TrialUpdateData = TrialCreateData;
+
+/**
+ * @type CloneTrialResponse
+ * @export
+ */
+export type CloneTrialResponse = Trial;
+
+/**
+ * @type CreateTrialResponse
+ * @export
+ */
+export type CreateTrialResponse = Trial;
+
+/**
+ * @type ForkTrialResponse
+ * @export
+ */
+export type ForkTrialResponse = Trial;
+
+/**
+ * @type ListTrialsResponse
+ * @export
+ */
+export type ListTrialsResponse = Array<
+  { models: Array<Trial> } & CommonListResponseData
+>;
+
+/**
+ * @type ReadTrialResponse
+ * @export
+ */
+export type ReadTrialResponse = Trial;
+
+/**
+ * @type UpdateTrialResponse
+ * @export
+ */
+export type UpdateTrialResponse = Trial;
+
+/**
+ * TRIAL STEP TYPES
+ */
+
+/**
  * Modeling the DAG representing a trial run -- each 'step' is a node in the DAG & is either:
  * - an input to a model,
  * - an output from a model,
@@ -2589,38 +2768,6 @@ export interface TrialStepFeedback {
 }
 
 /**
- *
- * @export
- * @interface TrialCreateData
- */
-export interface TrialCreateData {
-  /**
-   *
-   * @type {string}
-   * @memberof TrialCreateData
-   */
-  name?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof TrialCreateData
-   */
-  experimentId?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof TrialCreateData
-   */
-  modelId?: string;
-}
-
-/**
- * @type CreateTrialResponse
- * @export
- */
-export type CreateTrialResponse = Trial;
-
-/**
  * API Class
  */
 
@@ -2696,7 +2843,7 @@ export class LastMileAIApi {
 
   /**
    *
-   * @summary Returns a list of Datasets. Supports pagination and filtering by name
+   * @summary Returns a list of Datasets. Supports pagination and filtering by search string
    * @param {DatasetListQueryData} [queryData] Query / pagination filters
    */
   public async listDatasets(
@@ -2707,7 +2854,7 @@ export class LastMileAIApi {
       params: {
         cursor: queryData?.cursor,
         pageSize: queryData?.pageSize?.toString(),
-        search: queryData?.name,
+        search: queryData?.search,
       },
     });
     return res.data;
@@ -2781,7 +2928,7 @@ export class LastMileAIApi {
 
   /**
    *
-   * @summary Returns a list of EmbeddingCollections. Supports pagination and filtering by name
+   * @summary Returns a list of EmbeddingCollections. Supports pagination and filtering by search string
    * @param {EmbeddingCollectionListQueryData} [queryData] Query / pagination filters
    */
   public async listEmbeddingCollections(
@@ -2792,7 +2939,8 @@ export class LastMileAIApi {
       params: {
         cursor: queryData?.cursor,
         pageSize: queryData?.pageSize?.toString(),
-        search: queryData?.name,
+        search: queryData?.search,
+        ready: queryData?.ready?.toString(),
       },
     });
     return res.data;
@@ -2866,7 +3014,7 @@ export class LastMileAIApi {
 
   /**
    *
-   * @summary Returns a list of Experiments. Supports pagination and filtering by name
+   * @summary Returns a list of Experiments. Supports pagination and filtering by search string
    * @param {ExperimentListQueryData} [queryData] Query / pagination filters
    */
   public async listExperiments(
@@ -2877,7 +3025,7 @@ export class LastMileAIApi {
       params: {
         cursor: queryData?.cursor,
         pageSize: queryData?.pageSize?.toString(),
-        search: queryData?.name,
+        search: queryData?.search,
         workspaceId: queryData?.workspaceId,
       },
     });
@@ -2986,7 +3134,7 @@ export class LastMileAIApi {
 
   /**
    *
-   * @summary Returns a list of Models. Supports pagination and filtering by name
+   * @summary Returns a list of Models. Supports pagination and filtering by search string
    * @param {ModelListQueryData} [queryData] Query / pagination filters
    */
   public async listModels(
@@ -2997,7 +3145,8 @@ export class LastMileAIApi {
       params: {
         cursor: queryData?.cursor,
         pageSize: queryData?.pageSize?.toString(),
-        search: queryData?.name,
+        search: queryData?.search,
+        promoted: queryData?.promoted,
       },
     });
     return res.data;
@@ -3040,7 +3189,7 @@ export class LastMileAIApi {
 
   /**
    *
-   * @summary Returns a list of Notifications. Supports pagination and filtering by name
+   * @summary Returns a list of Notifications. Supports pagination and filtering by search string
    * @param {ModelListQueryData} [queryData] Query / pagination filters
    */
   public async listNotifications(
@@ -3051,7 +3200,7 @@ export class LastMileAIApi {
       params: {
         cursor: queryData?.cursor,
         pageSize: queryData?.pageSize?.toString(),
-        search: queryData?.name,
+        search: queryData?.search,
       },
     });
     return res.data;
@@ -3110,7 +3259,7 @@ export class LastMileAIApi {
 
   /**
    *
-   * @summary Returns a list of Organizations. Supports pagination and filtering by name
+   * @summary Returns a list of Organizations. Supports pagination and filtering by search string
    * @param {OrganizationListQueryData} [queryData] Query / pagination filters
    */
   public async listOrganizations(
@@ -3121,7 +3270,7 @@ export class LastMileAIApi {
       params: {
         cursor: queryData?.cursor,
         pageSize: queryData?.pageSize?.toString(),
-        search: queryData?.name,
+        search: queryData?.search,
       },
     });
     return res.data;
@@ -3256,7 +3405,7 @@ export class LastMileAIApi {
 
   /**
    *
-   * @summary Returns a list of Reviews. Supports pagination and filtering by name
+   * @summary Returns a list of Reviews. Supports pagination and filtering by search string
    * @param {ReviewListQueryData} [queryData] Query / pagination filters
    */
   public async listReviews(
@@ -3267,7 +3416,7 @@ export class LastMileAIApi {
       params: {
         cursor: queryData?.cursor,
         pageSize: queryData?.pageSize?.toString(),
-        search: queryData?.name,
+        search: queryData?.search,
       },
     });
     return res.data;
@@ -3321,7 +3470,7 @@ export class LastMileAIApi {
 
   /**
    *
-   * @summary Returns a list of private Tokens. Supports pagination and filtering by name
+   * @summary Returns a list of private Tokens. Supports pagination
    * @param {TokenListQueryData} [queryData] Query / pagination filters
    */
   public async listTokens(
@@ -3332,7 +3481,6 @@ export class LastMileAIApi {
       params: {
         cursor: queryData?.cursor,
         pageSize: queryData?.pageSize?.toString(),
-        search: queryData?.name,
       },
     });
     return res.data;
@@ -3373,7 +3521,7 @@ export class LastMileAIApi {
 
   /**
    *
-   * @summary Returns a list of Public Tokens. Supports pagination and filtering by name
+   * @summary Returns a list of Public Tokens. Supports pagination
    * @param {PublicTokenListQueryData} [queryData] Query / pagination filters
    */
   public async listPublicTokens(
@@ -3384,7 +3532,6 @@ export class LastMileAIApi {
       params: {
         cursor: queryData?.cursor,
         pageSize: queryData?.pageSize?.toString(),
-        search: queryData?.name,
       },
     });
     return res.data;
@@ -3393,6 +3540,20 @@ export class LastMileAIApi {
   /**
    * TRIALS
    */
+
+  /**
+   *
+   * @summary Creates and clone of a Trial
+   * @param {TrialCloneData} data Data to describe the clone
+   */
+  public async cloneTrial(data: TrialCloneData): Promise<CloneTrialResponse> {
+    const res = await axios.post(
+      "trials/clone",
+      data,
+      this.configuration.defaultAxiosConfig
+    );
+    return res.data;
+  }
 
   /**
    *
@@ -3405,6 +3566,83 @@ export class LastMileAIApi {
     const res = await axios.post(
       "trials/create",
       data,
+      this.configuration.defaultAxiosConfig
+    );
+    return res.data;
+  }
+
+  /**
+   *
+   * @summary Deletes a specified Trial
+   * @param {string} id The id of the Trial to delete
+   */
+  public async deleteTrial(id: string): Promise<{ status: string }> {
+    const res = await axios.delete("trials/delete", {
+      ...this.configuration.defaultAxiosConfig,
+      data: { id },
+    });
+    return res.data;
+  }
+
+  /**
+   *
+   * @summary Creates a fork (by ref) of a Trial
+   * @param {TrialForkData} data Data to describe the fork
+   */
+  public async forkTrial(data: TrialForkData): Promise<ForkTrialResponse> {
+    const res = await axios.post(
+      "trials/fork",
+      data,
+      this.configuration.defaultAxiosConfig
+    );
+    return res.data;
+  }
+
+  /**
+   *
+   * @summary Returns a list of Trials. Supports pagination and filtering by search string
+   * @param {TrialListQueryData} [queryData] Query / pagination filters
+   */
+  public async listTrials(
+    queryData?: TrialListQueryData
+  ): Promise<ListTrialsResponse> {
+    const res = await axios.get("trials/list", {
+      ...this.configuration.defaultAxiosConfig,
+      params: {
+        cursor: queryData?.cursor,
+        pageSize: queryData?.pageSize?.toString(),
+        search: queryData?.search,
+      },
+    });
+    return res.data;
+  }
+
+  /**
+   *
+   * @summary Reads a Trial
+   * @param {string} id The id of the Trial to read
+   */
+  public async readTrial(id: string): Promise<ReadTrialResponse> {
+    const res = await axios.get("trials/read", {
+      ...this.configuration.defaultAxiosConfig,
+      params: { id },
+    });
+    return res.data;
+  }
+
+  /**
+   *
+   * @summary Update the data associated with a Trial
+   * @param {string} id The id of the Trial to update
+   * @param {TrialUpdateData} data Data to update for the Trial
+   */
+  public async updateTrial(
+    id: string,
+    data: TrialUpdateData
+  ): Promise<UpdateTrialResponse> {
+    const res = await axios.put(
+      "trials/update",
+      { ...data, id },
       this.configuration.defaultAxiosConfig
     );
     return res.data;
