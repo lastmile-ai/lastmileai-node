@@ -2768,6 +2768,84 @@ export interface TrialStepFeedback {
 }
 
 /**
+ *
+ * @export
+ * @interface TrialStepCreateDataCore
+ */
+export interface TrialStepCreateDataCore {
+  /**
+   * The trial to add the step to
+   * @type {string}
+   * @memberof TrialStepCreateData
+   */
+  trialId: string;
+  /**
+   *
+   * @type {JSONValue}
+   * @memberof TrialStepCreateDataCore
+   */
+  data: JSONValue;
+  /**
+   *
+   * @type {string}
+   * @memberof TrialStepCreateDataCore
+   */
+  type: string;
+  /**
+   *
+   * @type {JSONValue}
+   * @memberof TrialStepCreateDataCore
+   */
+  metadata?: JSONValue;
+}
+
+/**
+ *
+ * @export
+ * @interface TrialStepCreateData
+ */
+export interface TrialStepCreateData extends TrialStepCreateDataCore {
+  /**
+   * The trial to add the step to
+   * @type {string}
+   * @memberof TrialStepCreateData
+   */
+  trialId: string;
+}
+
+/**
+ *
+ * @export
+ * @interface TrialStepUpdateData
+ */
+export interface TrialStepUpdateData {
+  /**
+   * The trial step to update
+   * @type {string}
+   * @memberof TrialStepUpdateData
+   */
+  id: string;
+  /**
+   *
+   * @type {JSONArray}
+   * @memberof TrialStepUpdateData
+   */
+  metadata: JSONArray;
+}
+
+/**
+ * @type CreateTrialStepResponse
+ * @export
+ */
+export type CreateTrialStepResponse = TrialStep;
+
+/**
+ * @type UpdateTrialStepResponse
+ * @export
+ */
+export type UpdateTrialStepResponse = TrialStep;
+
+/**
  * API Class
  */
 
@@ -3642,6 +3720,44 @@ export class LastMileAIApi {
   ): Promise<UpdateTrialResponse> {
     const res = await axios.put(
       "trials/update",
+      { ...data, id },
+      this.configuration.defaultAxiosConfig
+    );
+    return res.data;
+  }
+
+  /**
+   * TRIAL STEPS
+   */
+
+  /**
+   *
+   * @summary Creates and returns a new TrialStep
+   * @param {TrialStepCreateData} data Data to set in the created TrialStep
+   */
+  public async createTrialStep(
+    data: TrialStepCreateData
+  ): Promise<CreateTrialStepResponse> {
+    const res = await axios.post(
+      "trialsteps/create",
+      data,
+      this.configuration.defaultAxiosConfig
+    );
+    return res.data;
+  }
+
+  /**
+   *
+   * @summary Update the data associated with a TrialStep
+   * @param {string} id The id of the TrialStep to update
+   * @param {TrialStepUpdateData} data Data to update for the TrialStep
+   */
+  public async updateTrialStep(
+    id: string,
+    data: TrialStepUpdateData
+  ): Promise<UpdateTrialStepResponse> {
+    const res = await axios.put(
+      "trialsteps/update",
       { ...data, id },
       this.configuration.defaultAxiosConfig
     );
