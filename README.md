@@ -54,4 +54,17 @@ const responseText = completion.choices[0].message?.content;
 
 
 ## Completions -- Custom Models
+If you've tuned any GPT3-based custom models in [LastMile](https://lastmileai.dev/models) or by using this library, you can easily perform inference/completions against the context of their associated datasets (stored in the model's embeddings):
+```
+const model = await lastmile.readModel("Your model ID");
+
+const completion = await lastmile.createOpenAICompletion({
+  completionParams: {
+    model: "text-davinci-003",
+    prompt: "Your prompt here",
+  },
+  embeddingCollectionId: model.embeddingCollections[0]?.id,
+});
+const responseText = completion.choices[0]?.text;
+
 
