@@ -836,6 +836,36 @@ export type ReadExperimentResponse = Experiment & {
 export type UpdateExperimentResponse = Experiment;
 
 /**
+ * INFERENCE TYPES
+ */
+
+/**
+ *
+ * @type CommonCompletionData
+ * @export
+ */
+export type CommonCompletionData = {
+  trialId?: string;
+  embeddingCollectionId?: string;
+};
+
+/**
+ * @type OpenAICompletionData
+ * @export
+ */
+export type OpenAICompletionData = CommonCompletionData & {
+  completionParams: OpenAICreateCompletionRequest;
+};
+
+/**
+ * @type OpenAIChatCompletionData
+ * @export
+ */
+export type OpenAIChatCompletionData = CommonCompletionData & {
+  completionParams: OpenAICreateChatCompletionRequest;
+};
+
+/**
  * MODEL TYPES
  */
 
@@ -2576,33 +2606,33 @@ export class LastMileAIApi {
   /**
    *
    * @summary Provides text chat completion using OpenAI models
-   * @param {OpenAICreateChatCompletionRequest} data OpenAI CreateChatCompletionRequest
+   * @param {OpenAIChatCompletionData} data Data to use for the chat completion request
    */
   public async createOpenAIChatCompletion(
-    data: OpenAICreateChatCompletionRequest
+    data: OpenAIChatCompletionData
   ): Promise<OpenAICreateChatCompletionResponse> {
     const res = await axios.post(
       "inference/openai/chatgpt/completion",
       data,
       this.configuration.defaultAxiosConfig
     );
-    return res.data;
+    return res.data.completionResponse;
   }
 
   /**
    *
    * @summary Provides text completion using OpenAI models
-   * @param {OpenAICreateCompletionRequest} data OpenAI CreateCompletionRequest
+   * @param {OpenAICreateCompletionRequest} data Data to use for the completion request
    */
   public async createOpenAICompletion(
-    data: OpenAICreateCompletionRequest
+    data: OpenAICompletionData
   ): Promise<OpenAICreateCompletionResponse> {
     const res = await axios.post(
       "inference/openai/completion",
       data,
       this.configuration.defaultAxiosConfig
     );
-    return res.data;
+    return res.data.completionResponse;
   }
 
   /**
