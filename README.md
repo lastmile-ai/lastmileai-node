@@ -8,7 +8,8 @@ This library requires a LastMile AI API Token, which can be obtained from https:
 **Important note: this library should only be used from a server-side context, where the API key can be securely accessed. Using this library from client-side browser code will expose your private API key!**
 
 # Installation
-```
+
+```shell
 npm install lastmileai
 ```
 
@@ -16,11 +17,9 @@ npm install lastmileai
 
 ## Initialize Library with API Key
 This library needs to be configured with your API Token (aka API key) obtained above. You can store the API key in an environment variable or alternative secure storage that can be accessed in your server-side code. For example, to initialize the library with the API key loaded from environment variable:
-```
-import { Configuration, LastMileAIApi } from "lastmileai";
-import * as dotenv from 'dotenv'
 
-dotenv.config()
+```javascript
+import { Configuration, LastMileAIApi } from "lastmileai";
 
 const configuration = new Configuration({
     apiKey: process.env.LASTMILEAI_API_KEY ?? "",
@@ -31,7 +30,8 @@ const lastmile = new LastMileAIApi(configuration);
 
 ## Completions -- Open AI Models
 OpenAI completions are supported out-of the box for ChatGPT and GPT3 models:
-```
+
+```javascript
 const completion = await lastmile.createOpenAICompletion({
   completionParams: {
     model: "text-davinci-003",
@@ -40,7 +40,8 @@ const completion = await lastmile.createOpenAICompletion({
 });
 const responseText = completion.choices[0]?.text;
 ```
-```
+
+```javascript
 const completion = await lastmile.createOpenAIChatCompletion({
   completionParams: {
     model: "gpt-3.5-turbo",
@@ -55,7 +56,8 @@ const responseText = completion.choices[0].message?.content;
 
 ## Completions -- Custom Models
 If you've tuned any GPT3-based custom models in [LastMile](https://lastmileai.dev/models) or by using this library, you can easily perform inference/completions against the context of their associated datasets (stored in the model's embeddings):
-```
+
+```javascript
 const model = await lastmile.readModel("Your model ID");
 
 const completion = await lastmile.createOpenAICompletion({
