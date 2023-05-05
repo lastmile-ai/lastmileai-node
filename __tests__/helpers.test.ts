@@ -2,7 +2,7 @@ import * as dotenv from 'dotenv'
 import { LastMile } from '../api';
 dotenv.config()
 
-const lastMileAIApi = new LastMile({apiKey: process.env.LASTMILEAI_API_KEY ?? ""});
+const lastMileAIApi = new LastMile({apiKey: process.env.LASTMILEAI_API_KEY ?? "",});
 
 describe('Helper API Methods', () => {
     test('apiHealth', async () => {
