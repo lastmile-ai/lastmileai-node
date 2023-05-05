@@ -7,6 +7,7 @@ import {
 } from "openai";
 import { JSONArray, JSONValue } from "./common";
 import { Configuration } from "./configuration";
+import packageJson = require("./package.json");
 
 /**
  * GENERAL TYPES
@@ -2293,16 +2294,27 @@ export type UpdateWorkspaceResponse = Workspace;
  */
 
 /**
- * LastMileAIApi - API for interfacing with LastMileAI
+ * LastMile - API for interfacing with LastMileAI
  * @export
- * @class LastMileAIApi
+ * @class LastMile
  */
-export class LastMileAIApi {
+export class LastMile {
   protected configuration: Configuration;
   protected defaultHeaders: undefined;
 
   constructor(configuration: Configuration) {
     this.configuration = configuration;
+    if (!this.configuration.defaultAxiosConfig) {
+      this.configuration.defaultAxiosConfig = {
+        baseURL: 'https://lastmileai.dev/api/',
+            headers: {
+                'User-Agent': `LastMileAI/NodeJS/${packageJson.version}`,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${this.configuration.apiKey}`,
+            }
+      };
+    }
   }
 
   /**
