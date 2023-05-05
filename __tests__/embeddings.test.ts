@@ -1,13 +1,8 @@
 import * as dotenv from 'dotenv'
-import { LastMileAIApi, Visibility } from '../api';
-import { Configuration } from '../configuration';
+import { LastMile, Visibility } from '../api';
 dotenv.config()
 
-const configuration = new Configuration({
-    apiKey: process.env.LASTMILEAI_API_KEY ?? "",
-});
-
-const lastMileAIApi = new LastMileAIApi(configuration);
+const lastMileAIApi = new LastMile({apiKey: process.env.LASTMILEAI_API_KEY ?? ""});
 
 describe('Embeddings API Methods', () => {
     test('createEmbeddingCollection', async () => {
