@@ -19,13 +19,9 @@ npm install lastmileai
 This library needs to be configured with your API Token (aka API key) obtained above. You can store the API key in an environment variable or alternative secure storage that can be accessed in your server-side code. For example, to initialize the library with the API key loaded from environment variable:
 
 ```javascript
-import { Configuration, LastMileAIApi } from "lastmileai";
+import { LastMile } from "lastmileai";
 
-const configuration = new Configuration({
-    apiKey: process.env.LASTMILEAI_API_KEY ?? "",
-});
-
-const lastmile = new LastMileAIApi(configuration);
+const lastmile = new LastMile({apiKey: process.env.LASTMILEAI_API_KEY ?? ""});
 ```
 
 ## Completions -- Open AI Models
